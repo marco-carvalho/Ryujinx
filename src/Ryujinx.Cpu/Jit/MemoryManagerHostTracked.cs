@@ -469,23 +469,23 @@ namespace Ryujinx.Cpu.Jit
         {
             if (size == 0)
             {
-                return Enumerable.Empty<MemoryRange>();
+                yield break;
             }
 
-            return GetPhysicalRegionsImpl(va, size);
+            foreach (var region in GetPhysicalRegionsImpl(va, size))
+            {
+                yield return region;
+            }
         }
 
-        private List<MemoryRange> GetPhysicalRegionsImpl(ulong va, ulong size)
+        private IEnumerable<MemoryRange> GetPhysicalRegionsImpl(ulong va, ulong size)
         {
             if (!ValidateAddress(va) || !ValidateAddressAndSize(va, size))
             {
-                return null;
+                yield break;
             }
 
             int pages = GetPagesCount(va, (uint)size, out va);
-
-            var regions = new List<MemoryRange>();
-
             ulong regionStart = GetPhysicalAddressInternal(va);
             ulong regionSize = PageSize;
 
@@ -493,14 +493,14 @@ namespace Ryujinx.Cpu.Jit
             {
                 if (!ValidateAddress(va + PageSize))
                 {
-                    return null;
+                    yield break;
                 }
 
                 ulong newPa = GetPhysicalAddressInternal(va + PageSize);
 
                 if (GetPhysicalAddressInternal(va) + PageSize != newPa)
                 {
-                    regions.Add(new MemoryRange(regionStart, regionSize));
+                    yield return new MemoryRange(regionStart, regionSize);
                     regionStart = newPa;
                     regionSize = 0;
                 }
@@ -509,9 +509,7 @@ namespace Ryujinx.Cpu.Jit
                 regionSize += PageSize;
             }
 
-            regions.Add(new MemoryRange(regionStart, regionSize));
-
-            return regions;
+            yield return new MemoryRange(regionStart, regionSize);
         }
 
         /// <inheritdoc/>

@@ -340,8 +340,6 @@ namespace Ryujinx.Cpu.Jit
         {
             int pages = GetPagesCount(va, (uint)size, out va);
 
-            var regions = new List<MemoryRange>();
-
             ulong regionStart = GetPhysicalAddressChecked(va);
             ulong regionSize = PageSize;
 
@@ -349,14 +347,14 @@ namespace Ryujinx.Cpu.Jit
             {
                 if (!ValidateAddress(va + PageSize))
                 {
-                    return null;
+                    yield break;
                 }
 
                 ulong newPa = GetPhysicalAddressChecked(va + PageSize);
 
                 if (GetPhysicalAddressChecked(va) + PageSize != newPa)
                 {
-                    regions.Add(new MemoryRange(regionStart, regionSize));
+                    yield return new MemoryRange(regionStart, regionSize);
                     regionStart = newPa;
                     regionSize = 0;
                 }
@@ -365,9 +363,7 @@ namespace Ryujinx.Cpu.Jit
                 regionSize += PageSize;
             }
 
-            regions.Add(new MemoryRange(regionStart, regionSize));
-
-            return regions;
+            yield return new MemoryRange(regionStart, regionSize);
         }
 
         private ulong GetPhysicalAddressChecked(ulong va)
