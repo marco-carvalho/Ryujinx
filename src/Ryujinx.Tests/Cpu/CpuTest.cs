@@ -19,11 +19,6 @@ namespace Ryujinx.Tests.Cpu
         protected static ulong DataBaseAddress = CodeBaseAddress + Size;
 #pragma warning restore CA2211
 
-        private static readonly bool _ignoreFpcrFz = false;
-        private static readonly bool _ignoreFpcrDn = false;
-
-        private static readonly bool _ignoreAllExceptFpsrQc = false;
-
         private ulong _currAddress;
 
         private MemoryBlock _ram;
@@ -210,16 +205,6 @@ namespace Ryujinx.Tests.Cpu
                                                 int fpsr = 0,
                                                 bool runUnicorn = true)
         {
-            if (_ignoreFpcrFz)
-            {
-                fpcr &= ~(1 << (int)Fpcr.Fz);
-            }
-
-            if (_ignoreFpcrDn)
-            {
-                fpcr &= ~(1 << (int)Fpcr.Dn);
-            }
-
             Opcode(opcode);
             Opcode(0xD65F03C0); // RET
             SetContext(x0, x1, x2, x3, x31, v0, v1, v2, v3, v4, v5, v30, v31, overflow, carry, zero, negative, fpcr, fpsr);
@@ -320,11 +305,6 @@ namespace Ryujinx.Tests.Cpu
             FpSkips fpSkips = FpSkips.None,
             FpTolerances fpTolerances = FpTolerances.None)
         {
-            if (_ignoreAllExceptFpsrQc)
-            {
-                fpsrMask &= Fpsr.Qc;
-            }
-
             if (fpSkips != FpSkips.None)
             {
                 ManageFpSkips(fpSkips);

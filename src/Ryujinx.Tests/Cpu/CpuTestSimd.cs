@@ -230,19 +230,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x00000000000003FFul; // +Max Subnormal
             yield return 0x0000000000000001ul; // +Min Subnormal
 
-            if (!_noZeros)
             {
                 yield return 0x0000000000008000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0x000000000000FC00ul; // -Infinity
                 yield return 0x0000000000007C00ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0x000000000000FE00ul; // -QNaN (all zeros payload)
                 yield return 0x000000000000FDFFul; // -SNaN (all ones  payload)
@@ -272,19 +269,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x03FF03FF03FF03FFul; // +Max Subnormal
             yield return 0x0001000100010001ul; // +Min Subnormal
 
-            if (!_noZeros)
             {
                 yield return 0x8000800080008000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0xFC00FC00FC00FC00ul; // -Infinity
                 yield return 0x7C007C007C007C00ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0xFE00FE00FE00FE00ul; // -QNaN (all zeros payload)
                 yield return 0xFDFFFDFFFDFFFDFFul; // -SNaN (all ones  payload)
@@ -313,19 +307,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x00000000007FFFFFul; // +Max Subnormal
             yield return 0x0000000000000001ul; // +Min Subnormal (float.Epsilon)
 
-            if (!_noZeros)
             {
                 yield return 0x0000000080000000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0x00000000FF800000ul; // -Infinity
                 yield return 0x000000007F800000ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0x00000000FFC00000ul; // -QNaN (all zeros payload) (float.NaN)
                 yield return 0x00000000FFBFFFFFul; // -SNaN (all ones  payload)
@@ -368,19 +359,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x00000000007FFFFFul; // +Max Subnormal
             yield return 0x0000000000000001ul; // +Min Subnormal (float.Epsilon)
 
-            if (!_noZeros)
             {
                 yield return 0x0000000080000000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0x00000000FF800000ul; // -Infinity
                 yield return 0x000000007F800000ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0x00000000FFC00000ul; // -QNaN (all zeros payload) (float.NaN)
                 yield return 0x00000000FFBFFFFFul; // -SNaN (all ones  payload)
@@ -417,19 +405,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x007FFFFF007FFFFFul; // +Max Subnormal
             yield return 0x0000000100000001ul; // +Min Subnormal (float.Epsilon)
 
-            if (!_noZeros)
             {
                 yield return 0x8000000080000000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0xFF800000FF800000ul; // -Infinity
                 yield return 0x7F8000007F800000ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0xFFC00000FFC00000ul; // -QNaN (all zeros payload) (float.NaN)
                 yield return 0xFFBFFFFFFFBFFFFFul; // -SNaN (all ones  payload)
@@ -471,19 +456,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x007FFFFF007FFFFFul; // +Max Subnormal
             yield return 0x0000000100000001ul; // +Min Subnormal (float.Epsilon)
 
-            if (!_noZeros)
             {
                 yield return 0x8000000080000000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0xFF800000FF800000ul; // -Infinity
                 yield return 0x7F8000007F800000ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0xFFC00000FFC00000ul; // -QNaN (all zeros payload) (float.NaN)
                 yield return 0xFFBFFFFFFFBFFFFFul; // -SNaN (all ones  payload)
@@ -520,19 +502,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x000FFFFFFFFFFFFFul; // +Max Subnormal
             yield return 0x0000000000000001ul; // +Min Subnormal (double.Epsilon)
 
-            if (!_noZeros)
             {
                 yield return 0x8000000000000000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0xFFF0000000000000ul; // -Infinity
                 yield return 0x7FF0000000000000ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0xFFF8000000000000ul; // -QNaN (all zeros payload) (double.NaN)
                 yield return 0xFFF7FFFFFFFFFFFFul; // -SNaN (all ones  payload)
@@ -574,19 +553,16 @@ namespace Ryujinx.Tests.Cpu
             yield return 0x000FFFFFFFFFFFFFul; // +Max Subnormal
             yield return 0x0000000000000001ul; // +Min Subnormal (double.Epsilon)
 
-            if (!_noZeros)
             {
                 yield return 0x8000000000000000ul; // -Zero
                 yield return 0x0000000000000000ul; // +Zero
             }
 
-            if (!_noInfs)
             {
                 yield return 0xFFF0000000000000ul; // -Infinity
                 yield return 0x7FF0000000000000ul; // +Infinity
             }
 
-            if (!_noNaNs)
             {
                 yield return 0xFFF8000000000000ul; // -QNaN (all zeros payload) (double.NaN)
                 yield return 0xFFF7FFFFFFFFFFFFul; // -SNaN (all ones  payload)
@@ -1250,10 +1226,6 @@ namespace Ryujinx.Tests.Cpu
         #endregion
 
         private const int RndCnt = 2;
-
-        private static readonly bool _noZeros = false;
-        private static readonly bool _noInfs = false;
-        private static readonly bool _noNaNs = false;
 
         [Test, Pairwise, Description("ABS <V><d>, <V><n>")]
         public void Abs_S_D([Values(0u)] uint rd,

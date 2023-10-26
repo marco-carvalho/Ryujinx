@@ -244,3 +244,5 @@ dotnet_diagnostic.CA1822.severity = none
 [src/Ryujinx.Tests/Cpu/*.cs]
 # Disable naming rules for CPU tests
 dotnet_diagnostic.IDE1006.severity = none
+
+dotnet_analyzer_diagnostic.category-Performance.severity = error
