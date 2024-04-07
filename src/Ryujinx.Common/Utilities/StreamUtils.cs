@@ -4,6 +4,7 @@ using System.Buffers;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.IO;
 
 namespace Ryujinx.Common.Utilities
 {
@@ -59,7 +60,7 @@ namespace Ryujinx.Common.Utilities
 
         public static async Task<byte[]> StreamToBytesAsync(Stream input, CancellationToken cancellationToken = default)
         {
-            using MemoryStream stream = MemoryStreamManager.Shared.GetStream();
+            using RecyclableMemoryStream stream = MemoryStreamManager.Shared.GetStream();
 
             await input.CopyToAsync(stream, cancellationToken);
 
