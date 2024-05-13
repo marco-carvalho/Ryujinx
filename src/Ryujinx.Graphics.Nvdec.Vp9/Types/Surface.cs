@@ -47,8 +47,8 @@ namespace Ryujinx.Graphics.Nvdec.Vp9.Types
             int uvWidth = alignedWidth >> SsX;
             int uvHeight = alignedHeight >> SsY;
             int uvStride = yStride >> SsX;
-            int uvBorderW = Border >> SsX;
-            int uvBorderH = Border >> SsY;
+            const int uvBorderW = Border >> SsX;
+            const int uvBorderH = Border >> SsY;
             int uvplaneSize = (uvHeight + 2 * uvBorderH) * uvStride;
 
             int frameSize = (HighBd ? 2 : 1) * (yplaneSize + 2 * uvplaneSize);

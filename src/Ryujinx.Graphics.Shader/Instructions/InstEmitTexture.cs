@@ -66,7 +66,7 @@ namespace Ryujinx.Graphics.Shader.Instructions
         {
             InstTldB op = context.GetOp<InstTldB>();
 
-            var flags = TextureFlags.IntCoords | TextureFlags.Bindless;
+            const TextureFlags flags = TextureFlags.IntCoords | TextureFlags.Bindless;
             var lod = op.Lod ? Lod.Ll : Lod.Lz;
 
             EmitTex(context, flags, op.Dim, lod, 0, op.WMask, op.SrcA, op.SrcB, op.Dest, op.Ms, false, op.Toff);

@@ -22,7 +22,7 @@ namespace Ryujinx.Common
 
             int bytesLength = bytes.Length;
 
-            int firstHexColumn =
+            const int firstHexColumn =
                   HexTableColumnWidth
                 + HexTableColumnSpace;
 

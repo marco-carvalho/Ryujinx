@@ -38,7 +38,7 @@ namespace Ryujinx.Audio.Renderer.Server
             Debug.Assert(SampleCount == 160 || SampleCount == 240);
 
             float costPerBuffer = 440.68f;
-            float baseCost = 0;
+            const float baseCost = 0;
 
             if (SampleCount == 160)
             {
@@ -370,7 +370,7 @@ namespace Ryujinx.Audio.Renderer.Server
             Debug.Assert(SampleCount == 160 || SampleCount == 240);
 
             float costPerBuffer = 770.26f;
-            float baseCost = 0f;
+            const float baseCost = 0f;
 
             if (SampleCount == 160)
             {

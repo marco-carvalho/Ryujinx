@@ -81,9 +81,9 @@ namespace Ryujinx.Tests.Cpu
                                             0x80000000u, 0xFFFFFFFFu)] uint shiftValue,
                                     [Range(0, 31)] int shiftAmount)
         {
-            uint rd = 0;
-            uint rm = 1;
-            uint rs = 2;
+            const uint rd = 0;
+            const uint rm = 1;
+            const uint rs = 2;
             opcode |= ((rm & 15) << 0) | ((rd & 15) << 12) | ((rs & 15) << 8);
 
             SingleOpcode(opcode, r1: shiftValue, r2: (uint)shiftAmount);

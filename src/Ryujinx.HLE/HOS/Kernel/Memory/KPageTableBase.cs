@@ -116,7 +116,7 @@ namespace Ryujinx.HLE.HOS.Kernel.Memory
 
             _contextId = Context.ContextIdManager.GetId();
 
-            ulong addrSpaceBase = 0;
+            const ulong addrSpaceBase = 0;
             ulong addrSpaceSize = 1UL << _addrSpaceSizes[(int)addrSpaceType];
 
             Result result = CreateUserAddressSpace(

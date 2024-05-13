@@ -267,7 +267,7 @@ namespace Ryujinx.Tests.Memory
             PreparePages(handleHigh, PageCount, PageSize * OverlapStart);
 
             // Combined pages (and assuming overlapStart <= pageCount) should be pageCount after overlapStart.
-            int totalPages = OverlapStart + PageCount;
+            const int totalPages = OverlapStart + PageCount;
 
             Assert.AreEqual(totalPages, _tracking.GetRegionCount());
 

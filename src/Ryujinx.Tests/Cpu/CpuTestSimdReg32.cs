@@ -456,8 +456,8 @@ namespace Ryujinx.Tests.Cpu
                          [Values] bool e)
         {
             uint opcode = 0xeeb40840u;
-            uint rm = 1;
-            uint rd = 2;
+            const uint rm = 1;
+            const uint rd = 2;
 
             if (size == 3)
             {

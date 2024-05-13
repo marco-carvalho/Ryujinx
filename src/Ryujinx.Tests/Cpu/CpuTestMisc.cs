@@ -404,7 +404,7 @@ namespace Ryujinx.Tests.Cpu
         [TestCase(42ul)]
         public void SanityCheck(ulong a)
         {
-            uint opcode = 0xD503201F; // NOP
+            const uint opcode = 0xD503201F; // NOP
             ExecutionContext context = SingleOpcode(opcode, x0: a);
 
             Assert.That(context.GetX(0), Is.EqualTo(a));

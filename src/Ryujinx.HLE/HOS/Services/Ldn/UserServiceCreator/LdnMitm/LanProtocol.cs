@@ -232,7 +232,7 @@ namespace Ryujinx.HLE.HOS.Services.Ldn.UserServiceCreator.LdnMitm
         {
             List<byte> outputList = new();
             int i = 0;
-            int maxCount = 0xFF;
+            const int maxCount = 0xFF;
 
             while (i < input.Length)
             {

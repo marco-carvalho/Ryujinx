@@ -267,7 +267,7 @@ namespace Ryujinx.Cpu
 
                 ulong mask = startMask;
 
-                ulong anyTrackingTag = (ulong)ManagedPtBits.WriteTrackedReplicated;
+                const ulong anyTrackingTag = (ulong)ManagedPtBits.WriteTrackedReplicated;
 
                 while (pageIndex <= pageEndIndex)
                 {

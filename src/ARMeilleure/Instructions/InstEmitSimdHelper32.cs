@@ -752,7 +752,7 @@ namespace ARMeilleure.Instructions
             Debug.Assert(target.Type == OperandType.V128 && value.Type == OperandType.V128);
 
             int targetSide = targetV & 1;
-            int shuffleMask = 2;
+            const int shuffleMask = 2;
 
             if (targetSide == 1)
             {
@@ -808,7 +808,7 @@ namespace ARMeilleure.Instructions
 
             if (doubleWidth)
             {
-                int shuffleMask = 1; // Swap top and bottom. (b0 = 1, b1 = 0)
+                const int shuffleMask = 1; // Swap top and bottom. (b0 = 1, b1 = 0)
                 return context.AddIntrinsic(Intrinsic.X86Shufpd, target, target, Const(shuffleMask));
             }
             else

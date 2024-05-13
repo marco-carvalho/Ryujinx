@@ -18,8 +18,8 @@ namespace Ryujinx.Tests.Cpu
         {
             uint opcode = 0x0000; // MOVS <Rd>, <Rm>, <shift> #<amount>
 
-            uint rd = 1;
-            uint rm = 2;
+            const uint rd = 1;
+            const uint rm = 2;
             opcode |= ((rd & 7) << 0) | ((rm & 7) << 3) | ((shiftImm & 0x1f) << 6) | ((shiftType & 3) << 11);
 
             SingleThumbOpcode((ushort)opcode, r1: w1, r2: w2, runUnicorn: false);
@@ -43,9 +43,9 @@ namespace Ryujinx.Tests.Cpu
         {
             uint opcode = 0x1800; // ADDS <Rd>, <Rn>, <Rm>
 
-            uint rd = 0;
-            uint rn = 1;
-            uint rm = 2;
+            const uint rd = 0;
+            const uint rn = 1;
+            const uint rm = 2;
             opcode |= ((rd & 7) << 0) | ((rn & 7) << 3) | ((rm & 7) << 6) | ((op & 1) << 9);
 
             SingleThumbOpcode((ushort)opcode, r1: w1, r2: w2, runUnicorn: false);
@@ -66,8 +66,8 @@ namespace Ryujinx.Tests.Cpu
         {
             uint opcode = 0x1c00; // ADDS <Rd>, <Rn>, #<imm3>
 
-            uint rd = 0;
-            uint rn = 1;
+            const uint rd = 0;
+            const uint rn = 1;
             opcode |= ((rd & 7) << 0) | ((rn & 7) << 3) | ((imm & 7) << 6) | ((op & 1) << 9);
 
             SingleThumbOpcode((ushort)opcode, r1: w1, runUnicorn: false);
@@ -90,7 +90,7 @@ namespace Ryujinx.Tests.Cpu
 
             uint opcode = 0x2000; // MOVS <Rdn>, #<imm8>
 
-            uint rdn = 1;
+            const uint rdn = 1;
             opcode |= ((imm & 0xff) << 0) | ((rdn & 7) << 8) | ((op & 3) << 11);
 
             SingleThumbOpcode((ushort)opcode, r1: w1, runUnicorn: false);
@@ -126,8 +126,8 @@ namespace Ryujinx.Tests.Cpu
         {
             uint opcode = 0x4000; // ANDS <Rdn>, <Rm>
 
-            uint rd = 1;
-            uint rm = 2;
+            const uint rd = 1;
+            const uint rm = 2;
             opcode |= ((rd & 7) << 0) | ((rm & 7) << 3) | ((op & 0xf) << 6);
 
             SingleThumbOpcode((ushort)opcode, r1: w1, r2: w2, runUnicorn: false);

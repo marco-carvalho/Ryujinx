@@ -126,7 +126,7 @@ namespace Ryujinx.HLE.HOS.Services.Vi.RootService
             ulong displayInfoBuffer = context.Request.ReceiveBuff[0].Position;
 
             // TODO: Determine when more than one display is needed.
-            ulong displayCount = 1;
+            const ulong displayCount = 1;
 
             for (int i = 0; i < (int)displayCount; i++)
             {

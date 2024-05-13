@@ -186,7 +186,7 @@ namespace ARMeilleure.Translation
             context.Tailcall(hostAddress, nativeContext);
 
             var cfg = context.GetControlFlowGraph();
-            var retType = OperandType.I64;
+            const OperandType retType = OperandType.I64;
             var argTypes = new[] { OperandType.I64 };
 
             var func = Compiler.Compile(cfg, argTypes, retType, CompilerOptions.HighCq, RuntimeInformation.ProcessArchitecture).Map<GuestFunction>();
@@ -211,7 +211,7 @@ namespace ARMeilleure.Translation
             context.Tailcall(hostAddress, nativeContext);
 
             var cfg = context.GetControlFlowGraph();
-            var retType = OperandType.I64;
+            const OperandType retType = OperandType.I64;
             var argTypes = new[] { OperandType.I64 };
 
             var func = Compiler.Compile(cfg, argTypes, retType, CompilerOptions.HighCq, RuntimeInformation.ProcessArchitecture).Map<GuestFunction>();
@@ -280,7 +280,7 @@ namespace ARMeilleure.Translation
             context.Return();
 
             var cfg = context.GetControlFlowGraph();
-            var retType = OperandType.None;
+            const OperandType retType = OperandType.None;
             var argTypes = new[] { OperandType.I64, OperandType.I64 };
 
             return Compiler.Compile(cfg, argTypes, retType, CompilerOptions.HighCq, RuntimeInformation.ProcessArchitecture).Map<DispatcherFunction>();
@@ -304,7 +304,7 @@ namespace ARMeilleure.Translation
             context.Return(returnValue);
 
             var cfg = context.GetControlFlowGraph();
-            var retType = OperandType.I64;
+            const OperandType retType = OperandType.I64;
             var argTypes = new[] { OperandType.I64, OperandType.I64 };
 
             return Compiler.Compile(cfg, argTypes, retType, CompilerOptions.HighCq, RuntimeInformation.ProcessArchitecture).Map<WrapperFunction>();

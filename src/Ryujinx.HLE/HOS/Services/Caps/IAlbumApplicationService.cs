@@ -35,7 +35,7 @@ namespace Ryujinx.HLE.HOS.Services.Caps
         private ResultCode GetAlbumFileList(ServiceCtx context)
         {
             ResultCode resultCode = ResultCode.Success;
-            ulong count = 0;
+            const ulong count = 0;
 
             ContentType contentType = (ContentType)context.RequestData.ReadUInt16();
             ulong startTime = context.RequestData.ReadUInt64();

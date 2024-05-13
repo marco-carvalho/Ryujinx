@@ -262,7 +262,7 @@ namespace Ryujinx.Tests.Memory
                 int randSeed = i;
                 testThreads.Add(new Thread(() =>
                 {
-                    int maxAddress = ThreadCount * HandlesPerThread * PageSize;
+                    const int maxAddress = ThreadCount * HandlesPerThread * PageSize;
                     Random random = new(randSeed + 512);
                     while (Stopwatch.GetTimestamp() < finishedTime)
                     {

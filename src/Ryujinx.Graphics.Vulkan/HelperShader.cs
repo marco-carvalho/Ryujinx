@@ -907,7 +907,7 @@ namespace Ryujinx.Graphics.Vulkan
             // TODO: Convert with a compute shader?
 
             int convertedCount = pattern.GetConvertedCount(indexCount);
-            int outputIndexSize = 4;
+            const int outputIndexSize = 4;
 
             var srcBuffer = src.GetBuffer().Get(cbs, srcOffset, indexCount * indexSize).Value;
             var dstBuffer = dst.GetBuffer().Get(cbs, 0, convertedCount * outputIndexSize).Value;
@@ -1528,7 +1528,7 @@ namespace Ryujinx.Graphics.Vulkan
             int indexCount = srcIndexBufferSize / indexSize;
             int primitivesCount = pattern.GetPrimitiveCount(indexCount);
             int convertedCount = pattern.GetConvertedCount(indexCount);
-            int outputIndexSize = 4;
+            const int outputIndexSize = 4;
 
             var srcBuffer = srcIndexBuffer.GetBuffer().Get(cbs, srcIndexBufferOffset, indexCount * indexSize).Value;
             var dstBuffer = dstIndexBuffer.GetBuffer().Get(cbs, 0, convertedCount * outputIndexSize).Value;
@@ -1636,8 +1636,8 @@ namespace Ryujinx.Graphics.Vulkan
             var srcBuffer = srcBufferAuto.Get(cbs, 0, inSize).Value;
             var dstBuffer = dstBufferAuto.Get(cbs, dstOffset, outSize).Value;
 
-            var access = AccessFlags.ShaderWriteBit;
-            var stage = PipelineStageFlags.ComputeShaderBit;
+            const AccessFlags access = AccessFlags.ShaderWriteBit;
+            const PipelineStageFlags stage = PipelineStageFlags.ComputeShaderBit;
 
             BufferHolder.InsertBufferBarrier(
                 gd,

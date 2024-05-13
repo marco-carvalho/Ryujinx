@@ -315,7 +315,7 @@ namespace Ryujinx.Cpu.LightningJit.Arm64
 
         private static bool IsFpFromGpr(InstFlags flags, uint encoding)
         {
-            InstFlags bothFlags = InstFlags.FpSimdFromGpr | InstFlags.FpSimdToGpr;
+            const InstFlags bothFlags = InstFlags.FpSimdFromGpr | InstFlags.FpSimdToGpr;
 
             if ((flags & bothFlags) == bothFlags) // FMOV (general)
             {
@@ -327,7 +327,7 @@ namespace Ryujinx.Cpu.LightningJit.Arm64
 
         private static bool IsFpToGpr(InstFlags flags, uint encoding)
         {
-            InstFlags bothFlags = InstFlags.FpSimdFromGpr | InstFlags.FpSimdToGpr;
+            const InstFlags bothFlags = InstFlags.FpSimdFromGpr | InstFlags.FpSimdToGpr;
 
             if ((flags & bothFlags) == bothFlags) // FMOV (general)
             {

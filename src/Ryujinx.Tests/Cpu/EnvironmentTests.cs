@@ -66,7 +66,7 @@ namespace Ryujinx.Tests.Cpu
             void ManagedMethod()
             {
                 // Floating point math should not modify fp flags.
-                float test = 2f * 3.5f;
+                const float test = 2f * 3.5f;
 
                 if (test < 4f)
                 {

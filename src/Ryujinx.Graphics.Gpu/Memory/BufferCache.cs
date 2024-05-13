@@ -252,7 +252,7 @@ namespace Ryujinx.Graphics.Gpu.Memory
         public void CreateBuffer(ulong address, ulong size, ulong alignment)
         {
             ulong alignmentMask = alignment - 1;
-            ulong pageAlignmentMask = BufferAlignmentMask;
+            const ulong pageAlignmentMask = BufferAlignmentMask;
             ulong endAddress = address + size;
 
             ulong alignedAddress = address & ~alignmentMask;
@@ -311,7 +311,7 @@ namespace Ryujinx.Graphics.Gpu.Memory
 
             MemoryRange[] alignedSubRanges = new MemoryRange[range.Count];
 
-            ulong alignmentMask = SparseBufferAlignmentSize - 1;
+            const ulong alignmentMask = SparseBufferAlignmentSize - 1;
 
             if (_context.Capabilities.SupportsSparseBuffer)
             {
@@ -456,7 +456,7 @@ namespace Ryujinx.Graphics.Gpu.Memory
             }
 
             // Align the address to avoid creating too many entries on the quick lookup dictionary.
-            ulong mask = BufferAlignmentMask;
+            const ulong mask = BufferAlignmentMask;
             ulong alignedGpuVa = gpuVa & (~mask);
             ulong alignedEndGpuVa = (gpuVa + size + mask) & (~mask);
 

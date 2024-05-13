@@ -134,7 +134,7 @@ namespace Ryujinx.Graphics.Gpu.Engine.MME
 
             // Removes overflow on the method address into the increment portion.
             // Present in the original macro.
-            int addrMask = unchecked((int)0xfffc0fff) << 2;
+            const int addrMask = unchecked((int)0xfffc0fff) << 2;
 
             state.Write(scratchOffset & addrMask, id);
             state.Write((ShaderAddressScratchOffset + arg0 * 4) & addrMask, offset);
@@ -318,7 +318,7 @@ namespace Ryujinx.Graphics.Gpu.Engine.MME
             var indexAddressHigh = FetchParam();
             var indexAddressLow = FetchParam();
             var indexType = FetchParam();
-            var firstIndex = 0;
+            const int firstIndex = 0;
             var indexCount = FetchParam();
 
             _processor.ThreedClass.UpdateIndexBuffer(

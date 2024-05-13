@@ -512,8 +512,8 @@ namespace Ryujinx.Cpu.LightningJit.Arm32.Target.Arm64
             {
                 // Conditional branch.
 
-                uint branchMask = 0x7ffff;
-                int branchMax = (int)(branchMask + 1) / 2;
+                const uint branchMask = 0x7ffff;
+                const int branchMax = (int)(branchMask + 1) / 2;
 
                 if (targets.TryGetValue(targetAddress, out targetIndex))
                 {

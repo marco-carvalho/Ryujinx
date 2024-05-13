@@ -71,8 +71,8 @@ namespace Ryujinx.Cpu.LightningJit.CodeGen.Arm64
 
                 if (type == BranchType.Conditional)
                 {
-                    uint branchMask = 0x7ffff;
-                    int branchMax = (int)(branchMask + 1) / 2;
+                    const uint branchMask = 0x7ffff;
+                    const int branchMax = (int)(branchMask + 1) / 2;
 
                     if (delta >= -branchMax && delta < branchMax)
                     {

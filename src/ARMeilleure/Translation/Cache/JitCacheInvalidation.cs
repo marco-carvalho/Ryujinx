@@ -51,7 +51,7 @@ namespace ARMeilleure.Translation.Cache
             if (RuntimeInformation.ProcessArchitecture == Architecture.Arm64)
             {
                 ulong size = (ulong)_invalidationCode.Length * sizeof(int);
-                ulong mask = (ulong)ReservedRegion.DefaultGranularity - 1;
+                const ulong mask = (ulong)ReservedRegion.DefaultGranularity - 1;
 
                 size = (size + mask) & ~mask;
 

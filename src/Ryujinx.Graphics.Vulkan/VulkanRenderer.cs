@@ -583,7 +583,7 @@ namespace Ryujinx.Graphics.Vulkan
 
         public unsafe Capabilities GetCapabilities()
         {
-            FormatFeatureFlags compressedFormatFeatureFlags =
+            const FormatFeatureFlags compressedFormatFeatureFlags =
                 FormatFeatureFlags.SampledImageBit |
                 FormatFeatureFlags.SampledImageFilterLinearBit |
                 FormatFeatureFlags.BlitSrcBit |

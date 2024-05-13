@@ -242,7 +242,7 @@ namespace ARMeilleure.Instructions
         {
             IOpCode32Simd op = (IOpCode32Simd)context.CurrOp;
 
-            string name = nameof(Math.Round);
+            const string name = nameof(Math.Round);
 
             MethodInfo info = (op.Size & 1) == 0
                 ? typeof(MathF).GetMethod(name, new Type[] { typeof(float), typeof(MidpointRounding) })
@@ -682,7 +682,7 @@ namespace ARMeilleure.Instructions
                     nRes = context.AddIntrinsic(Intrinsic.X86Pand, nRes, nCmp);
                 }
 
-                int fpMaxVal = 0x4F000000; // 2.14748365E9f (2147483648)
+                const int fpMaxVal = 0x4F000000; // 2.14748365E9f (2147483648)
 
                 Operand fpMaxValMask = X86GetScalar(context, fpMaxVal);
 
@@ -740,7 +740,7 @@ namespace ARMeilleure.Instructions
                     nRes = context.AddIntrinsic(Intrinsic.X86Pand, nRes, nCmp);
                 }
 
-                long fpMaxVal = 0x41E0000000000000L; // 2147483648.0000000d (2147483648)
+                const long fpMaxVal = 0x41E0000000000000L; // 2147483648.0000000d (2147483648)
 
                 Operand fpMaxValMask = X86GetScalar(context, fpMaxVal);
 

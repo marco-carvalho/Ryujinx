@@ -36,7 +36,7 @@ namespace ARMeilleure.Instructions
 
         public static ulong X86GetGf2p8LogicalShiftLeft(int shift)
         {
-            ulong identity = (0b00000001UL << 56) | (0b00000010UL << 48) | (0b00000100UL << 40) | (0b00001000UL << 32) |
+            const ulong identity = (0b00000001UL << 56) | (0b00000010UL << 48) | (0b00000100UL << 40) | (0b00001000UL << 32) |
                              (0b00010000UL << 24) | (0b00100000UL << 16) | (0b01000000UL << 8) | (0b10000000UL << 0);
 
             return shift >= 0 ? identity >> (shift * 8) : identity << (-shift * 8);
@@ -470,7 +470,7 @@ namespace ARMeilleure.Instructions
         {
             IOpCodeSimd op = (IOpCodeSimd)context.CurrOp;
 
-            string name = nameof(Math.Round);
+            const string name = nameof(Math.Round);
 
             MethodInfo info = (op.Size & 1) == 0
                 ? typeof(MathF).GetMethod(name, new Type[] { typeof(float), typeof(MidpointRounding) })

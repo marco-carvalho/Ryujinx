@@ -63,7 +63,7 @@ namespace Ryujinx.Tests.HLE
         public void StripUnicodeControlCodes_PreservesMultiCodePoints()
         {
             // Turtles are a good example of multi-codepoint Unicode chars
-            string specialInput = "♀ 🐢 🐢 ♂ ";
+            const string specialInput = "♀ 🐢 🐢 ♂ ";
             Assert.AreEqual(specialInput, SoftwareKeyboardApplet.StripUnicodeControlCodes(specialInput));
         }
     }
