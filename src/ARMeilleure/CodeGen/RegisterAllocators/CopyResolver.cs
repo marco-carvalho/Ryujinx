@@ -49,8 +49,9 @@ namespace ARMeilleure.CodeGen.RegisterAllocators
                 Queue<Register> pendingQueue = new();
                 Queue<Register> readyQueue = new();
 
-                foreach (Copy copy in _copies)
+                for (int i = 0; i < _copies.Count; i++)
                 {
+                    Copy copy = _copies[i];
                     locations[copy.Source] = copy.Source;
                     sources[copy.Dest] = copy.Source;
                     types[copy.Dest] = copy.Type;
@@ -58,8 +59,9 @@ namespace ARMeilleure.CodeGen.RegisterAllocators
                     pendingQueue.Enqueue(copy.Dest);
                 }
 
-                foreach (Copy copy in _copies)
+                for (int i = 0; i < _copies.Count; i++)
                 {
+                    Copy copy = _copies[i];
                     // If the destination is not used anywhere, we can assign it immediately.
                     if (!locations.ContainsKey(copy.Dest))
                     {

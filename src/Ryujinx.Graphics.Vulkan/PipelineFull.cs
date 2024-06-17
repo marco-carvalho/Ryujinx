@@ -32,8 +32,9 @@ namespace Ryujinx.Graphics.Vulkan
 
         private void CopyPendingQuery()
         {
-            foreach (var query in _pendingQueryCopies)
+            for (int i = 0; i < _pendingQueryCopies.Count; i++)
             {
+                BufferedQuery query = _pendingQueryCopies[i];
                 query.PoolCopy(Cbs);
             }
 
@@ -260,8 +261,9 @@ namespace Ryujinx.Graphics.Vulkan
             Gd.RegisterFlush();
 
             // Restore per-command buffer state.
-            foreach (BufferHolder buffer in _activeBufferMirrors)
+            for (int i = 0; i < _activeBufferMirrors.Count; i++)
             {
+                BufferHolder buffer = _activeBufferMirrors[i];
                 buffer.ClearMirrors();
             }
 

@@ -62,8 +62,9 @@ namespace Ryujinx.Graphics.Gpu.Shader
         /// <returns>Programs added to the table</returns>
         public IEnumerable<CachedShaderProgram> GetPrograms()
         {
-            foreach (var program in _shaderPrograms)
+            for (int i = 0; i < _shaderPrograms.Count; i++)
             {
+                CachedShaderProgram program = _shaderPrograms[i];
                 yield return program;
             }
         }

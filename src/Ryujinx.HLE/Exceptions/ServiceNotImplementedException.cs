@@ -83,8 +83,9 @@ namespace Ryujinx.HLE.Exceptions
                 {
                     sb.AppendLine("\tPtrBuff:");
 
-                    foreach (var buff in Request.PtrBuff)
+                    for (int i = 0; i < Request.PtrBuff.Count; i++)
                     {
+                        IpcPtrBuffDesc buff = Request.PtrBuff[i];
                         sb.AppendLine($"\t[{buff.Index}] Position: 0x{buff.Position:x16} Size: 0x{buff.Size:x16}");
                     }
                 }
@@ -93,8 +94,9 @@ namespace Ryujinx.HLE.Exceptions
                 {
                     sb.AppendLine("\tSendBuff:");
 
-                    foreach (var buff in Request.SendBuff)
+                    for (int i = 0; i < Request.SendBuff.Count; i++)
                     {
+                        IpcBuffDesc buff = Request.SendBuff[i];
                         sb.AppendLine($"\tPosition: 0x{buff.Position:x16} Size: 0x{buff.Size:x16} Flags: {buff.Flags}");
                     }
                 }
@@ -103,8 +105,9 @@ namespace Ryujinx.HLE.Exceptions
                 {
                     sb.AppendLine("\tReceiveBuff:");
 
-                    foreach (var buff in Request.ReceiveBuff)
+                    for (int i = 0; i < Request.ReceiveBuff.Count; i++)
                     {
+                        IpcBuffDesc buff = Request.ReceiveBuff[i];
                         sb.AppendLine($"\tPosition: 0x{buff.Position:x16} Size: 0x{buff.Size:x16} Flags: {buff.Flags}");
                     }
                 }
@@ -113,8 +116,9 @@ namespace Ryujinx.HLE.Exceptions
                 {
                     sb.AppendLine("\tExchangeBuff:");
 
-                    foreach (var buff in Request.ExchangeBuff)
+                    for (int i = 0; i < Request.ExchangeBuff.Count; i++)
                     {
+                        IpcBuffDesc buff = Request.ExchangeBuff[i];
                         sb.AppendLine($"\tPosition: 0x{buff.Position:x16} Size: 0x{buff.Size:x16} Flags: {buff.Flags}");
                     }
                 }
@@ -123,8 +127,9 @@ namespace Ryujinx.HLE.Exceptions
                 {
                     sb.AppendLine("\tRecvListBuff:");
 
-                    foreach (var buff in Request.RecvListBuff)
+                    for (int i = 0; i < Request.RecvListBuff.Count; i++)
                     {
+                        IpcRecvListBuffDesc buff = Request.RecvListBuff[i];
                         sb.AppendLine($"\tPosition: 0x{buff.Position:x16} Size: 0x{buff.Size:x16}");
                     }
                 }

@@ -137,8 +137,9 @@ namespace Ryujinx.HLE.HOS.Services
 
                 if (_isDomain)
                 {
-                    foreach (int id in context.Response.ObjectIds)
+                    for (int i = 0; i < context.Response.ObjectIds.Count; i++)
                     {
+                        int id = context.Response.ObjectIds[i];
                         context.ResponseData.Write(id);
                     }
 

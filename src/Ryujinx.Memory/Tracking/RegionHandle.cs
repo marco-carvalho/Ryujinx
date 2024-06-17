@@ -199,8 +199,9 @@ namespace Ryujinx.Memory.Tracking
             _allRegions.AddRange(_regions);
             _allRegions.AddRange(_guestRegions);
 
-            foreach (var region in _allRegions)
+            for (int i = 0; i < _allRegions.Count; i++)
             {
+                VirtualRegion region = _allRegions[i];
                 region.Handles.Add(this);
             }
         }
@@ -356,8 +357,9 @@ namespace Ryujinx.Memory.Tracking
 
             lock (_tracking.TrackingLock)
             {
-                foreach (VirtualRegion region in _allRegions)
+                for (int i = 0; i < _allRegions.Count; i++)
                 {
+                    VirtualRegion region = _allRegions[i];
                     protectionChanged |= region.UpdateProtection();
                 }
             }
@@ -414,8 +416,9 @@ namespace Ryujinx.Memory.Tracking
                 {
                     lock (_tracking.TrackingLock)
                     {
-                        foreach (VirtualRegion region in _allRegions)
+                        for (int i = 0; i < _allRegions.Count; i++)
                         {
+                            VirtualRegion region = _allRegions[i];
                             region.UpdateProtection();
                         }
                     }
@@ -513,8 +516,9 @@ namespace Ryujinx.Memory.Tracking
 
             lock (_tracking.TrackingLock)
             {
-                foreach (VirtualRegion region in _allRegions)
+                for (int i = 0; i < _allRegions.Count; i++)
                 {
+                    VirtualRegion region = _allRegions[i];
                     region.RemoveHandle(this);
                 }
             }

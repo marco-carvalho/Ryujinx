@@ -170,8 +170,9 @@ namespace Ryujinx.HLE.HOS.Ipc
                 ms.Write(handleDataStream);
             }
 
-            foreach (IpcPtrBuffDesc ptrBuffDesc in PtrBuff)
+            for (int i = 0; i < PtrBuff.Count; i++)
             {
+                IpcPtrBuffDesc ptrBuffDesc = PtrBuff[i];
                 ms.Write(ptrBuffDesc.GetWord0());
                 ms.Write(ptrBuffDesc.GetWord1());
             }

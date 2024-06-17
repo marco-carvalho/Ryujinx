@@ -393,13 +393,15 @@ namespace Ryujinx.Graphics.Gpu
 
             if (force || _pendingSync || (syncpoint && SyncpointActions.Count > 0))
             {
-                foreach (var action in SyncActions)
+                for (int i = 0; i < SyncActions.Count; i++)
                 {
+                    ISyncActionHandler action = SyncActions[i];
                     action.SyncPreAction(syncpoint);
                 }
 
-                foreach (var action in SyncpointActions)
+                for (int i = 0; i < SyncpointActions.Count; i++)
                 {
+                    ISyncActionHandler action = SyncpointActions[i];
                     action.SyncPreAction(syncpoint);
                 }
 

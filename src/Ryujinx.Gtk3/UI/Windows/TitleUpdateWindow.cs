@@ -66,8 +66,9 @@ namespace Ryujinx.UI.Windows
 
             _baseTitleInfoLabel.Text = $"Updates Available for {titleName} [{titleId.ToUpper()}]";
 
-            foreach (string path in _titleUpdateWindowData.Paths)
+            for (int i = 0; i < _titleUpdateWindowData.Paths.Count; i++)
             {
+                string path = _titleUpdateWindowData.Paths[i];
                 AddUpdate(path);
             }
 

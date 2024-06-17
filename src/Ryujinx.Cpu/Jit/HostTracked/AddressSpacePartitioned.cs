@@ -388,8 +388,9 @@ namespace Ryujinx.Cpu.Jit.HostTracked
         {
             if (disposing)
             {
-                foreach (AddressSpacePartition partition in _partitions)
+                for (int i = 0; i < _partitions.Count; i++)
                 {
+                    AddressSpacePartition partition = _partitions[i];
                     partition.Dispose();
                 }
 

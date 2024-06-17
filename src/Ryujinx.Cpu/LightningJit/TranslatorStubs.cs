@@ -195,8 +195,9 @@ namespace Ryujinx.Cpu.LightningJit
 
                 asm.Br(page);
 
-                foreach (int branchOffset in branchToFallbackOffsets)
+                for (int i = 0; i < branchToFallbackOffsets.Count; i++)
                 {
+                    int branchOffset = branchToFallbackOffsets[i];
                     uint branchInst = writer.ReadInstructionAt(branchOffset);
                     Debug.Assert(writer.InstructionPointer > branchOffset);
                     writer.WriteInstructionAt(branchOffset, branchInst | ((uint)(writer.InstructionPointer - branchOffset) << 5));

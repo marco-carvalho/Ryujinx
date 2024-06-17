@@ -484,8 +484,9 @@ namespace Ryujinx.HLE.HOS
             Logger.Info?.Print(LogClass.ModLoader, $"Applying RomFS mods for Application {applicationId:X16}");
 
             // Prioritize loose files first
-            foreach (var mod in mods.RomfsDirs)
+            for (int i = 0; i < mods.RomfsDirs.Count; i++)
             {
+                Mod<DirectoryInfo> mod = mods.RomfsDirs[i];
                 if (!mod.Enabled)
                 {
                     continue;
@@ -499,8 +500,9 @@ namespace Ryujinx.HLE.HOS
             }
 
             // Then files inside images
-            foreach (var mod in mods.RomfsContainers)
+            for (int i = 0; i < mods.RomfsContainers.Count; i++)
             {
+                Mod<FileInfo> mod = mods.RomfsContainers[i];
                 if (!mod.Enabled)
                 {
                     continue;
@@ -612,34 +614,35 @@ namespace Ryujinx.HLE.HOS
 
             var exeMods = mods.ExefsDirs;
 
-            foreach (var mod in exeMods)
+            for (int i = 0; i < exeMods.Count; i++)
             {
+                Mod<DirectoryInfo> mod = exeMods[i];
                 if (!mod.Enabled)
                 {
                     continue;
                 }
 
-                for (int i = 0; i < ProcessConst.ExeFsPrefixes.Length; ++i)
+                for (int j = 0; j < ProcessConst.ExeFsPrefixes.Length; ++j)
                 {
-                    var nsoName = ProcessConst.ExeFsPrefixes[i];
+                    var nsoName = ProcessConst.ExeFsPrefixes[j];
 
                     FileInfo nsoFile = new(Path.Combine(mod.Path.FullName, nsoName));
                     if (nsoFile.Exists)
                     {
-                        if (modLoadResult.Replaces[1 << i])
+                        if (modLoadResult.Replaces[1 << j])
                         {
                             Logger.Warning?.Print(LogClass.ModLoader, $"Multiple replacements to '{nsoName}'");
 
                             continue;
                         }
 
-                        modLoadResult.Replaces[1 << i] = true;
+                        modLoadResult.Replaces[1 << j] = true;
 
-                        nsos[i] = new NsoExecutable(nsoFile.OpenRead().AsStorage(), nsoName);
+                        nsos[j] = new NsoExecutable(nsoFile.OpenRead().AsStorage(), nsoName);
                         Logger.Info?.Print(LogClass.ModLoader, $"NSO '{nsoName}' replaced");
                     }
 
-                    modLoadResult.Stubs[1 << i] |= File.Exists(Path.Combine(mod.Path.FullName, nsoName + StubExtension));
+                    modLoadResult.Stubs[1 << j] |= File.Exists(Path.Combine(mod.Path.FullName, nsoName + StubExtension));
                 }
 
                 FileInfo npdmFile = new(Path.Combine(mod.Path.FullName, "main.npdm"));
@@ -719,8 +722,9 @@ namespace Ryujinx.HLE.HOS
             var processExes = tamperInfo.BuildIds.Zip(tamperInfo.CodeAddresses, (k, v) => new { k, v })
                 .ToDictionary(x => x.k[..Math.Min(Cheat.CheatIdSize, x.k.Length)], x => x.v);
 
-            foreach (var cheat in cheats)
+            for (int i = 0; i < cheats.Count; i++)
             {
+                Cheat cheat = cheats[i];
                 string cheatId = Path.GetFileNameWithoutExtension(cheat.Path.Name).ToUpper();
 
                 if (!processExes.TryGetValue(cheatId, out ulong exeAddress))

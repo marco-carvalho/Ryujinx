@@ -159,8 +159,9 @@ namespace Ryujinx.Common.Logging
 
         private static ILogTarget GetTarget(string targetName)
         {
-            foreach (var target in _logTargets)
+            for (int i = 0; i < _logTargets.Count; i++)
             {
+                ILogTarget target = _logTargets[i];
                 if (target.Name.Equals(targetName))
                 {
                     return target;
@@ -197,8 +198,9 @@ namespace Ryujinx.Common.Logging
 
             _stdErrAdapter.Dispose();
 
-            foreach (var target in _logTargets)
+            for (int i = 0; i < _logTargets.Count; i++)
             {
+                ILogTarget target = _logTargets[i];
                 target.Dispose();
             }
 

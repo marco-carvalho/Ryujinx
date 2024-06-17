@@ -114,8 +114,9 @@ namespace ARMeilleure.Common
             }
 
             // Free extra blocks that are not page-sized
-            foreach (IntPtr ptr in _extras)
+            for (int i = 0; i < _extras.Count; i++)
             {
+                nint ptr = _extras[i];
                 NativeAllocator.Instance.Free((void*)ptr);
             }
 
@@ -168,13 +169,15 @@ namespace ARMeilleure.Common
         {
             if (_pages != null)
             {
-                foreach (PageInfo info in _pages)
+                for (int i = 0; i < _pages.Count; i++)
                 {
+                    PageInfo info = _pages[i];
                     NativeAllocator.Instance.Free(info.Pointer);
                 }
 
-                foreach (IntPtr ptr in _extras)
+                for (int i = 0; i < _extras.Count; i++)
                 {
+                    nint ptr = _extras[i];
                     NativeAllocator.Instance.Free((void*)ptr);
                 }
 

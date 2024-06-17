@@ -55,8 +55,9 @@ namespace Ryujinx.Input.HLE
             lock (_lock)
             {
                 List<InputConfig> validInputs = new();
-                foreach (var inputConfigEntry in _inputConfig)
+                for (int i = 0; i < _inputConfig.Count; i++)
                 {
+                    InputConfig inputConfigEntry = _inputConfig[i];
                     if (_controllers[(int)inputConfigEntry.PlayerIndex] != null)
                     {
                         validInputs.Add(inputConfigEntry);
@@ -124,8 +125,9 @@ namespace Ryujinx.Input.HLE
 
                 List<InputConfig> validInputs = new();
 
-                foreach (InputConfig inputConfigEntry in inputConfig)
+                for (int i = 0; i < inputConfig.Count; i++)
                 {
+                    InputConfig inputConfigEntry = inputConfig[i];
                     NpadController controller;
                     int index = (int)inputConfigEntry.PlayerIndex;
 
@@ -174,8 +176,9 @@ namespace Ryujinx.Input.HLE
         {
             lock (_lock)
             {
-                foreach (InputConfig inputConfig in _inputConfig)
+                for (int i = 0; i < _inputConfig.Count; i++)
                 {
+                    InputConfig inputConfig = _inputConfig[i];
                     _controllers[(int)inputConfig.PlayerIndex]?.GamepadDriver?.Clear();
                 }
 
@@ -208,8 +211,9 @@ namespace Ryujinx.Input.HLE
 
                 KeyboardInput? hleKeyboardInput = null;
 
-                foreach (InputConfig inputConfig in _inputConfig)
+                for (int i = 0; i < _inputConfig.Count; i++)
                 {
+                    InputConfig inputConfig = _inputConfig[i];
                     GamepadInput inputState = default;
                     (SixAxisInput, SixAxisInput) motionState = default;
 

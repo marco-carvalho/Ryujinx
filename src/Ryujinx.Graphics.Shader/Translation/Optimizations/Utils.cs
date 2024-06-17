@@ -80,8 +80,9 @@ namespace Ryujinx.Graphics.Shader.Translation.Optimizations
 
         private static Operation FindBranchSource(BasicBlock block)
         {
-            foreach (BasicBlock sourceBlock in block.Predecessors)
+            for (int i = 0; i < block.Predecessors.Count; i++)
             {
+                BasicBlock sourceBlock = block.Predecessors[i];
                 if (sourceBlock.Operations.Count > 0)
                 {
                     if (sourceBlock.GetLastOp() is Operation lastOp && IsConditionalBranch(lastOp.Inst) && sourceBlock.Next == block)

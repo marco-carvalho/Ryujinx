@@ -396,8 +396,9 @@ namespace Ryujinx.HLE.HOS.Services.Ldn.UserServiceCreator.LdnMitm
         {
             lock (_lock)
             {
-                foreach (LdnProxyTcpSession station in _stations)
+                for (int i = 0; i < _stations.Count; i++)
                 {
+                    LdnProxyTcpSession station = _stations[i];
                     station.Disconnect();
                     station.Dispose();
                 }
@@ -441,8 +442,9 @@ namespace Ryujinx.HLE.HOS.Services.Ldn.UserServiceCreator.LdnMitm
 
             NetworkInfo.Ldn.NodeCount = nodeCount;
 
-            foreach (LdnProxyTcpSession station in _stations)
+            for (int i = 0; i < _stations.Count; i++)
             {
+                LdnProxyTcpSession station = _stations[i];
                 if (station.IsConnected)
                 {
                     if (_protocol.SendPacket(station, LanPacketType.SyncNetwork, SpanHelpers.AsSpan<NetworkInfo, byte>(ref NetworkInfo).ToArray()) < 0)

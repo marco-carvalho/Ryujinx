@@ -46,8 +46,9 @@ namespace Ryujinx.Graphics.OpenGL
             {
                 ulong lastHandle = _firstHandle;
 
-                foreach (SyncHandle handle in _handles)
+                for (int i = 0; i < _handles.Count; i++)
                 {
+                    SyncHandle handle = _handles[i];
                     lock (handle)
                     {
                         if (handle.Handle == IntPtr.Zero)
@@ -82,8 +83,9 @@ namespace Ryujinx.Graphics.OpenGL
                     return; // The handle has already been signalled or deleted.
                 }
 
-                foreach (SyncHandle handle in _handles)
+                for (int i = 0; i < _handles.Count; i++)
                 {
+                    SyncHandle handle = _handles[i];
                     if (handle.ID == id)
                     {
                         result = handle;
@@ -156,8 +158,9 @@ namespace Ryujinx.Graphics.OpenGL
         {
             lock (_handles)
             {
-                foreach (SyncHandle handle in _handles)
+                for (int i = 0; i < _handles.Count; i++)
                 {
+                    SyncHandle handle = _handles[i];
                     lock (handle)
                     {
                         GL.DeleteSync(handle.Handle);

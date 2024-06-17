@@ -164,8 +164,9 @@ namespace Ryujinx.Tests.Memory
             // Track with sequence number 1. Future dirty flags should only be consumed with sequence number != 1.
             // Only track the odd pages, so the even ones don't have their sequence number set.
 
-            foreach (int index in odd)
+            for (int i = 0; i < odd.Count; i++)
             {
+                int index = odd[i];
                 handle.QueryModified((ulong)index * PageSize, PageSize, (address, range) =>
                 {
                     oddRegionCount++;

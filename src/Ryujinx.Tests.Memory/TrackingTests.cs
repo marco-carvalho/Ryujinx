@@ -277,13 +277,15 @@ namespace Ryujinx.Tests.Memory
 
             finishedTime = Stopwatch.GetTimestamp() + Stopwatch.Frequency / 2; // Run for 500ms;
 
-            foreach (Thread thread in testThreads)
+            for (int i = 0; i < testThreads.Count; i++)
             {
+                Thread thread = testThreads[i];
                 thread.Start();
             }
 
-            foreach (Thread thread in testThreads)
+            for (int i = 0; i < testThreads.Count; i++)
             {
+                Thread thread = testThreads[i];
                 thread.Join();
             }
 

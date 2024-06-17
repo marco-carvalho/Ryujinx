@@ -218,8 +218,9 @@ namespace Ryujinx.Graphics.Vulkan
             {
                 if (DependencyList != null)
                 {
-                    foreach (Dependency dependency in DependencyList)
+                    for (int i = 0; i < DependencyList.Count; i++)
                     {
+                        Dependency dependency = DependencyList[i];
                         dependency.RemoveFromOwner();
                     }
 
@@ -286,8 +287,9 @@ namespace Ryujinx.Graphics.Vulkan
         {
             List<Entry> entries = GetEntries(offset, size);
 
-            foreach (Entry entry in entries)
+            for (int i = 0; i < entries.Count; i++)
             {
+                Entry entry = entries[i];
                 if (entry.Key.KeyEqual(key))
                 {
                     value = entry.Value;
@@ -306,8 +308,9 @@ namespace Ryujinx.Graphics.Vulkan
             {
                 foreach (List<Entry> entries in _ranges.Values)
                 {
-                    foreach (Entry entry in entries)
+                    for (int i = 0; i < entries.Count; i++)
                     {
+                        Entry entry = entries[i];
                         DestroyEntry(entry);
                     }
                 }
@@ -335,8 +338,9 @@ namespace Ryujinx.Graphics.Vulkan
                     {
                         List<Entry> entries = range.Value;
 
-                        foreach (Entry entry in entries)
+                        for (int i = 0; i < entries.Count; i++)
                         {
+                            Entry entry = entries[i];
                             DestroyEntry(entry);
                         }
 
@@ -346,8 +350,9 @@ namespace Ryujinx.Graphics.Vulkan
 
                 if (toRemove != null)
                 {
-                    foreach (ulong range in toRemove)
+                    for (int i = 0; i < toRemove.Count; i++)
                     {
+                        ulong range = toRemove[i];
                         _ranges.Remove(range);
                     }
                 }

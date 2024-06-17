@@ -171,8 +171,9 @@ namespace Ryujinx.HLE.HOS
         public void UpdateInput(List<GamepadInput> gamepadInputs)
         {
             // Look for the input of the player one or the handheld.
-            foreach (GamepadInput input in gamepadInputs)
+            for (int i = 0; i < gamepadInputs.Count; i++)
             {
+                GamepadInput input = gamepadInputs[i];
                 if (input.PlayerId == PlayerIndex.Player1 || input.PlayerId == PlayerIndex.Handheld)
                 {
                     Volatile.Write(ref _pressedKeys, (long)input.Buttons);

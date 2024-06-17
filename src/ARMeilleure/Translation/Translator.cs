@@ -541,8 +541,9 @@ namespace ARMeilleure.Translation
 
             List<TranslatedFunction> functions = Functions.AsList();
 
-            foreach (var func in functions)
+            for (int i = 0; i < functions.Count; i++)
             {
+                TranslatedFunction func = functions[i];
                 JitCache.Unmap(func.FuncPointer);
 
                 func.CallCounter?.Dispose();

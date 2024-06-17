@@ -82,10 +82,12 @@ namespace Ryujinx.HLE.HOS.Services.Ro
 
         public bool IsNroHashPresent(byte[] nroHash)
         {
-            foreach (NrrInfo info in _nrrInfos)
+            for (int i = 0; i < _nrrInfos.Count; i++)
             {
-                foreach (byte[] hash in info.Hashes)
+                NrrInfo info = _nrrInfos[i];
+                for (int j = 0; j < info.Hashes.Count; j++)
                 {
+                    byte[] hash = info.Hashes[j];
                     if (hash.SequenceEqual(nroHash))
                     {
                         return true;
@@ -98,8 +100,9 @@ namespace Ryujinx.HLE.HOS.Services.Ro
 
         public bool IsNroLoaded(byte[] nroHash)
         {
-            foreach (NroInfo info in _nroInfos)
+            for (int i = 0; i < _nroInfos.Count; i++)
             {
+                NroInfo info = _nroInfos[i];
                 if (info.Hash.SequenceEqual(nroHash))
                 {
                     return true;
@@ -350,8 +353,9 @@ namespace Ryujinx.HLE.HOS.Services.Ro
 
         private ResultCode RemoveNrrInfo(ulong nrrAddress)
         {
-            foreach (NrrInfo info in _nrrInfos)
+            for (int i = 0; i < _nrrInfos.Count; i++)
             {
+                NrrInfo info = _nrrInfos[i];
                 if (info.NrrAddress == nrrAddress)
                 {
                     _nrrInfos.Remove(info);
@@ -365,8 +369,9 @@ namespace Ryujinx.HLE.HOS.Services.Ro
 
         private ResultCode RemoveNroInfo(ulong nroMappedAddress)
         {
-            foreach (NroInfo info in _nroInfos)
+            for (int i = 0; i < _nroInfos.Count; i++)
             {
+                NroInfo info = _nroInfos[i];
                 if (info.NroMappedAddress == nroMappedAddress)
                 {
                     _nroInfos.Remove(info);
@@ -583,8 +588,9 @@ namespace Ryujinx.HLE.HOS.Services.Ro
         {
             if (isDisposing)
             {
-                foreach (NroInfo info in _nroInfos)
+                for (int i = 0; i < _nroInfos.Count; i++)
                 {
+                    NroInfo info = _nroInfos[i];
                     UnmapNroFromInfo(info);
                 }
 

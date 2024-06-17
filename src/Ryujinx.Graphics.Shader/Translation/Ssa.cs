@@ -308,8 +308,9 @@ namespace Ryujinx.Graphics.Shader.Translation
 
             globalDefs[block.Index].TryAddOperand(reg, local);
 
-            foreach (BasicBlock predecessor in block.Predecessors)
+            for (int i = 0; i < block.Predecessors.Count; i++)
             {
+                BasicBlock predecessor = block.Predecessors[i];
                 Definition def = FindDefinition(globalDefs, predecessor, reg);
 
                 phi.AddSource(def.Block, def.Local);

@@ -630,8 +630,9 @@ namespace ARMeilleure.CodeGen.RegisterAllocators
             }
 
             // Reset iterators to beginning because GetSplitChild depends on the state of the iterator.
-            foreach (LiveInterval interval in _intervals)
+            for (int i = 0; i < _intervals.Count; i++)
             {
+                LiveInterval interval = _intervals[i];
                 interval.Reset();
             }
 

@@ -43,8 +43,9 @@ namespace Ryujinx.HLE.HOS.Services.Sdb.Pdm.QueryService
             if (queryCapability == PlayLogQueryCapability.WhiteList)
             {
                 // Check if input title ids are in the whitelist.
-                foreach (ulong titleId in titleIds)
+                for (int i = 0; i < titleIds.Count; i++)
                 {
+                    ulong titleId = titleIds[i];
                     if (!context.Device.Processes.ActiveApplication.ApplicationControlProperties.PlayLogQueryableApplicationId.ItemsRo.Contains(titleId))
                     {
                         return (ResultCode)Am.ResultCode.ObjectInvalid;

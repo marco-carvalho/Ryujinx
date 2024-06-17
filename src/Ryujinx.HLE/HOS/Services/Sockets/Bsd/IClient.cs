@@ -240,22 +240,25 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd
 
             int index = 0;
 
-            foreach (IFileDescriptor fd in readFds)
+            for (int i = 0; i < readFds.Count; i++)
             {
+                IFileDescriptor fd = readFds[i];
                 events[index] = new PollEvent(new PollEventData { InputEvents = PollEventTypeMask.Input }, fd);
 
                 index++;
             }
 
-            foreach (IFileDescriptor fd in writeFds)
+            for (int i = 0; i < writeFds.Count; i++)
             {
+                IFileDescriptor fd = writeFds[i];
                 events[index] = new PollEvent(new PollEventData { InputEvents = PollEventTypeMask.Output }, fd);
 
                 index++;
             }
 
-            foreach (IFileDescriptor fd in errorFds)
+            for (int i = 0; i < errorFds.Count; i++)
             {
+                IFileDescriptor fd = errorFds[i];
                 events[index] = new PollEvent(new PollEventData { InputEvents = PollEventTypeMask.Error }, fd);
 
                 index++;

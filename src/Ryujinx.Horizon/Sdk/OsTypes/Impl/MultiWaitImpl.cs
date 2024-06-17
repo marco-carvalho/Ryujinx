@@ -38,8 +38,9 @@ namespace Ryujinx.Horizon.Sdk.OsTypes.Impl
 
         public void MoveAllFrom(MultiWaitImpl other)
         {
-            foreach (MultiWaitHolderBase multiWait in other._multiWaits)
+            for (int i = 0; i < other._multiWaits.Count; i++)
             {
+                MultiWaitHolderBase multiWait = other._multiWaits[i];
                 multiWait.SetMultiWait(this);
             }
 
@@ -146,8 +147,9 @@ namespace Ryujinx.Horizon.Sdk.OsTypes.Impl
         {
             int count = 0;
 
-            foreach (MultiWaitHolderBase holder in _multiWaits)
+            for (int i = 0; i < _multiWaits.Count; i++)
             {
+                MultiWaitHolderBase holder = _multiWaits[i];
                 int handle = holder.Handle;
 
                 if (handle != 0)
@@ -168,8 +170,9 @@ namespace Ryujinx.Horizon.Sdk.OsTypes.Impl
 
             long minTime = endTime;
 
-            foreach (MultiWaitHolderBase holder in _multiWaits)
+            for (int i = 0; i < _multiWaits.Count; i++)
             {
+                MultiWaitHolderBase holder = _multiWaits[i];
                 long currentTime = holder.GetAbsoluteTimeToWakeup();
 
                 if ((ulong)currentTime < (ulong)minTime)
@@ -219,8 +222,9 @@ namespace Ryujinx.Horizon.Sdk.OsTypes.Impl
         {
             MultiWaitHolderBase signaledHolder = null;
 
-            foreach (MultiWaitHolderBase holder in _multiWaits)
+            for (int i = 0; i < _multiWaits.Count; i++)
             {
+                MultiWaitHolderBase holder = _multiWaits[i];
                 TriBool isSignaled = holder.LinkToObjectList();
 
                 if (signaledHolder == null && isSignaled == TriBool.True)
@@ -234,8 +238,9 @@ namespace Ryujinx.Horizon.Sdk.OsTypes.Impl
 
         private void UnlinkHoldersFromObjectsList()
         {
-            foreach (MultiWaitHolderBase holder in _multiWaits)
+            for (int i = 0; i < _multiWaits.Count; i++)
             {
+                MultiWaitHolderBase holder = _multiWaits[i];
                 holder.UnlinkFromObjectList();
             }
         }

@@ -107,8 +107,9 @@ namespace Ryujinx.Ava.UI.ViewModels
 
                 ModLoader.QueryContentsDir(modCache, new DirectoryInfo(Path.Combine(path, "contents")), applicationId);
 
-                foreach (var mod in modCache.RomfsDirs)
+                for (int i = 0; i < modCache.RomfsDirs.Count; i++)
                 {
+                    ModLoader.Mod<DirectoryInfo> mod = modCache.RomfsDirs[i];
                     var modModel = new ModModel(mod.Path.Parent.FullName, mod.Name, mod.Enabled, inSd);
                     if (Mods.All(x => x.Path != mod.Path.Parent.FullName))
                     {
@@ -116,13 +117,15 @@ namespace Ryujinx.Ava.UI.ViewModels
                     }
                 }
 
-                foreach (var mod in modCache.RomfsContainers)
+                for (int i = 0; i < modCache.RomfsContainers.Count; i++)
                 {
+                    ModLoader.Mod<FileInfo> mod = modCache.RomfsContainers[i];
                     Mods.Add(new ModModel(mod.Path.FullName, mod.Name, mod.Enabled, inSd));
                 }
 
-                foreach (var mod in modCache.ExefsDirs)
+                for (int i = 0; i < modCache.ExefsDirs.Count; i++)
                 {
+                    ModLoader.Mod<DirectoryInfo> mod = modCache.ExefsDirs[i];
                     var modModel = new ModModel(mod.Path.Parent.FullName, mod.Name, mod.Enabled, inSd);
                     if (Mods.All(x => x.Path != mod.Path.Parent.FullName))
                     {
@@ -130,8 +133,9 @@ namespace Ryujinx.Ava.UI.ViewModels
                     }
                 }
 
-                foreach (var mod in modCache.ExefsContainers)
+                for (int i = 0; i < modCache.ExefsContainers.Count; i++)
                 {
+                    ModLoader.Mod<FileInfo> mod = modCache.ExefsContainers[i];
                     Mods.Add(new ModModel(mod.Path.FullName, mod.Name, mod.Enabled, inSd));
                 }
             }

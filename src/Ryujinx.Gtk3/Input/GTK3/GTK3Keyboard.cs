@@ -107,8 +107,9 @@ namespace Ryujinx.Input.GTK3
                     return result;
                 }
 
-                foreach (ButtonMappingEntry entry in _buttonsUserMapping)
+                for (int i = 0; i < _buttonsUserMapping.Count; i++)
                 {
+                    ButtonMappingEntry entry = _buttonsUserMapping[i];
                     if (entry.From == Key.Unknown || entry.From == Key.Unbound || entry.To == GamepadButtonInputId.Unbound)
                     {
                         continue;

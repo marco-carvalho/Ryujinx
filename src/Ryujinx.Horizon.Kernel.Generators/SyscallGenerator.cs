@@ -147,8 +147,9 @@ namespace Ryujinx.Horizon.Kernel.Generators
 
             List<SyscallIdAndName> syscalls = new List<SyscallIdAndName>();
 
-            foreach (var method in syntaxReceiver.SvcImplementations)
+            for (int i = 0; i < syntaxReceiver.SvcImplementations.Count; i++)
             {
+                MethodDeclarationSyntax method = syntaxReceiver.SvcImplementations[i];
                 GenerateMethod32(generator, context.Compilation, method);
                 GenerateMethod64(generator, context.Compilation, method);
 
@@ -292,8 +293,9 @@ namespace Ryujinx.Horizon.Kernel.Generators
                 generator.AppendLine($"syscall.{method.Identifier.Text}({argsList});");
             }
 
-            foreach (OutParameter outParameter in outParameters)
+            for (int i = 0; i < outParameters.Count; i++)
             {
+                OutParameter outParameter = outParameters[i];
                 generator.AppendLine($"context.SetX({returnRegisterIndex++}, (uint){outParameter.Identifier});");
 
                 if (outParameter.NeedsSplit)
@@ -377,8 +379,9 @@ namespace Ryujinx.Horizon.Kernel.Generators
                 generator.AppendLine($"syscall.{method.Identifier.Text}({argsList});");
             }
 
-            foreach (OutParameter outParameter in outParameters)
+            for (int i = 0; i < outParameters.Count; i++)
             {
+                OutParameter outParameter = outParameters[i];
                 generator.AppendLine($"context.SetX({returnRegisterIndex++}, (ulong){outParameter.Identifier});");
             }
 
@@ -468,8 +471,9 @@ namespace Ryujinx.Horizon.Kernel.Generators
             generator.EnterScope($"public static void Dispatch{suffix}(Syscall syscall, {TypeExecutionContext} context, int id)");
             generator.EnterScope("switch (id)");
 
-            foreach (var syscall in syscalls)
+            for (int i = 0; i < syscalls.Count; i++)
             {
+                SyscallIdAndName syscall = syscalls[i];
                 generator.AppendLine($"case {syscall.Id}:");
                 generator.IncreaseIndentation();
 

@@ -325,8 +325,9 @@ namespace Ryujinx.Graphics.Vulkan
             {
                 _pendingDataRanges.Remove(offset, size);
 
-                foreach (var range in ranges)
+                for (int i = 0; i < ranges.Count; i++)
                 {
+                    BufferMirrorRangeList.Range range = ranges[i];
                     int rangeOffset = Math.Max(offset, range.Offset);
                     int rangeSize = Math.Min(offset + size, range.End) - rangeOffset;
 
@@ -494,8 +495,9 @@ namespace Ryujinx.Graphics.Vulkan
 
             if (toRemove != null)
             {
-                foreach (var key in toRemove)
+                for (int i = 0; i < toRemove.Count; i++)
                 {
+                    ulong key = toRemove[i];
                     _mirrors.Remove(key);
                 }
 

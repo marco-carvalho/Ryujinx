@@ -277,8 +277,9 @@ namespace Spv.Generator
             writer.Write(0u);
 
             // 1.
-            foreach (Capability capability in _capabilities)
+            for (int i = 0; i < _capabilities.Count; i++)
             {
+                Capability capability = _capabilities[i];
                 Instruction capabilityInstruction = NewInstruction(Op.OpCapability);
 
                 capabilityInstruction.AddOperand(capability);
@@ -286,8 +287,9 @@ namespace Spv.Generator
             }
 
             // 2.
-            foreach (string extension in _extensions)
+            for (int i = 0; i < _extensions.Count; i++)
             {
+                string extension = _extensions[i];
                 Instruction extensionInstruction = NewInstruction(Op.OpExtension);
 
                 extensionInstruction.AddOperand(extension);
@@ -307,27 +309,31 @@ namespace Spv.Generator
             memoryModelInstruction.Write(writer);
 
             // 5.
-            foreach (Instruction entrypoint in _entrypoints)
+            for (int i = 0; i < _entrypoints.Count; i++)
             {
+                Instruction entrypoint = _entrypoints[i];
                 entrypoint.Write(writer);
             }
 
             // 6.
-            foreach (Instruction executionMode in _executionModes)
+            for (int i = 0; i < _executionModes.Count; i++)
             {
+                Instruction executionMode = _executionModes[i];
                 executionMode.Write(writer);
             }
 
             // 7.
             // TODO: Order debug information correctly.
-            foreach (Instruction debug in _debug)
+            for (int i = 0; i < _debug.Count; i++)
             {
+                Instruction debug = _debug[i];
                 debug.Write(writer);
             }
 
             // 8.
-            foreach (Instruction annotation in _annotations)
+            for (int i = 0; i < _annotations.Count; i++)
             {
+                Instruction annotation = _annotations[i];
                 annotation.Write(writer);
             }
 
@@ -339,20 +345,23 @@ namespace Spv.Generator
             declarations.Sort((Instruction x, Instruction y) => x.Id.CompareTo(y.Id));
 
             // 9.
-            foreach (Instruction declaration in declarations)
+            for (int i = 0; i < declarations.Count; i++)
             {
+                Instruction declaration = declarations[i];
                 declaration.Write(writer);
             }
 
             // 10.
-            foreach (Instruction functionDeclaration in _functionsDeclarations)
+            for (int i = 0; i < _functionsDeclarations.Count; i++)
             {
+                Instruction functionDeclaration = _functionsDeclarations[i];
                 functionDeclaration.Write(writer);
             }
 
             // 11.
-            foreach (Instruction functionDefinition in _functionsDefinitions)
+            for (int i = 0; i < _functionsDefinitions.Count; i++)
             {
+                Instruction functionDefinition = _functionsDefinitions[i];
                 functionDefinition.Write(writer);
             }
 

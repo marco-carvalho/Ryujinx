@@ -117,8 +117,9 @@ namespace Ryujinx.Audio.Renderer.Dsp.Command
 
             StartTime = (ulong)PerformanceCounter.ElapsedNanoseconds;
 
-            foreach (ICommand command in Commands)
+            for (int i = 0; i < Commands.Count; i++)
             {
+                ICommand command = Commands[i];
                 if (command.Enabled)
                 {
                     bool shouldMeter = command.ShouldMeter();

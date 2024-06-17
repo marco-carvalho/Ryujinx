@@ -87,8 +87,9 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd
 
         public void BuildMask(List<IFileDescriptor> fds, Span<byte> mask)
         {
-            foreach (IFileDescriptor descriptor in fds)
+            for (int i = 0; i < fds.Count; i++)
             {
+                IFileDescriptor descriptor = fds[i];
                 int fd = _fds.IndexOf(descriptor);
 
                 mask[fd >> 3] |= (byte)(1 << (fd & 7));
@@ -140,8 +141,9 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd
         {
             lock (_lock)
             {
-                foreach (IFileDescriptor file in _fds)
+                for (int i = 0; i < _fds.Count; i++)
                 {
+                    IFileDescriptor file = _fds[i];
                     if (file is ISocket socket)
                     {
                         LinuxError errno = socket.Shutdown(how);

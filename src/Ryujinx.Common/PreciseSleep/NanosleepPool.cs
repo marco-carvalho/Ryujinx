@@ -174,8 +174,9 @@ namespace Ryujinx.Common.PreciseSleep
                 _signalId++;
 
                 // Check active sleeps, if any line up with the requested timepoint then resurrect that nanosleep.
-                foreach (NanosleepThread existing in _active)
+                for (int i = 0; i < _active.Count; i++)
                 {
+                    NanosleepThread existing = _active[i];
                     if (existing.Resurrect(_signalId, timePoint))
                     {
                         return true;
@@ -217,8 +218,9 @@ namespace Ryujinx.Common.PreciseSleep
         {
             GC.SuppressFinalize(this);
 
-            foreach (NanosleepThread thread in _threads)
+            for (int i = 0; i < _threads.Count; i++)
             {
+                NanosleepThread thread = _threads[i];
                 thread.Dispose();
             }
 

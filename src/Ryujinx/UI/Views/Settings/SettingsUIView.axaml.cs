@@ -50,8 +50,10 @@ namespace Ryujinx.Ava.UI.Views.Settings
         {
             int oldIndex = GameList.SelectedIndex;
 
-            foreach (string path in new List<string>(GameList.SelectedItems.Cast<string>()))
+            List<string> list = new List<string>(GameList.SelectedItems.Cast<string>());
+            for (int i = 0; i < list.Count; i++)
             {
+                string path = list[i];
                 ViewModel.GameDirectories.Remove(path);
                 ViewModel.DirectoryChanged = true;
             }

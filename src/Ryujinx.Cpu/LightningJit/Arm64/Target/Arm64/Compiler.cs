@@ -464,8 +464,9 @@ namespace Ryujinx.Cpu.LightningJit.Arm64.Target.Arm64
                 pc += 4;
             }
 
-            foreach (PendingBranch pendingBranch in pendingBranches)
+            for (int i = 0; i < pendingBranches.Count; i++)
             {
+                PendingBranch pendingBranch = pendingBranches[i];
                 RewriteBranchInstructionWithTarget(
                     context,
                     pendingBranch.BlockIndex,

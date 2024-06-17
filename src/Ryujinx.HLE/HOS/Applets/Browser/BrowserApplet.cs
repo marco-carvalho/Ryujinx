@@ -39,8 +39,9 @@ namespace Ryujinx.HLE.HOS.Applets.Browser
 
             Logger.Stub?.PrintStub(LogClass.ServiceAm, $"Web Arguments: {_arguments.Count}");
 
-            foreach (BrowserArgument argument in _arguments)
+            for (int i = 0; i < _arguments.Count; i++)
             {
+                BrowserArgument argument = _arguments[i];
                 Logger.Stub?.PrintStub(LogClass.ServiceAm, $"{argument.Type}: {argument.GetValue()}");
             }
 
@@ -86,8 +87,9 @@ namespace Ryujinx.HLE.HOS.Applets.Browser
                 ShimKind = _shimKind,
             });
 
-            foreach (BrowserOutput output in outputArguments)
+            for (int i = 0; i < outputArguments.Count; i++)
             {
+                BrowserOutput output = outputArguments[i];
                 output.Write(writer);
             }
 

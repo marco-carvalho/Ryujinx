@@ -43,8 +43,9 @@ namespace ARMeilleure.Translation
 
                     BasicBlock newIDom = null;
 
-                    foreach (BasicBlock predecessor in block.Predecessors)
+                    for (int i = 0; i < block.Predecessors.Count; i++)
                     {
+                        BasicBlock predecessor = block.Predecessors[i];
                         if (predecessor.ImmediateDominator != null)
                         {
                             if (newIDom != null)

@@ -108,8 +108,9 @@ namespace Ryujinx.HLE.HOS.Services.Nfc.Nfp
         {
             VirtualAmiiboFile virtualAmiiboFile = LoadAmiiboFile(amiiboId);
 
-            foreach (VirtualAmiiboApplicationArea applicationArea in virtualAmiiboFile.ApplicationAreas)
+            for (int i = 0; i < virtualAmiiboFile.ApplicationAreas.Count; i++)
             {
+                VirtualAmiiboApplicationArea applicationArea = virtualAmiiboFile.ApplicationAreas[i];
                 if (applicationArea.ApplicationAreaId == _openedApplicationAreaId)
                 {
                     return applicationArea.ApplicationArea;

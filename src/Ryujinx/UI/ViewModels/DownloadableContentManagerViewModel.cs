@@ -119,8 +119,9 @@ namespace Ryujinx.Ava.UI.ViewModels
 
         private void LoadDownloadableContents()
         {
-            foreach (DownloadableContentContainer downloadableContentContainer in _downloadableContentContainerList)
+            for (int i = 0; i < _downloadableContentContainerList.Count; i++)
             {
+                DownloadableContentContainer downloadableContentContainer = _downloadableContentContainerList[i];
                 if (File.Exists(downloadableContentContainer.ContainerPath))
                 {
                     using FileStream containerFile = File.OpenRead(downloadableContentContainer.ContainerPath);
@@ -130,8 +131,9 @@ namespace Ryujinx.Ava.UI.ViewModels
 
                     _virtualFileSystem.ImportTickets(partitionFileSystem);
 
-                    foreach (DownloadableContentNca downloadableContentNca in downloadableContentContainer.DownloadableContentNcaList)
+                    for (int j = 0; j < downloadableContentContainer.DownloadableContentNcaList.Count; j++)
                     {
+                        DownloadableContentNca downloadableContentNca = downloadableContentContainer.DownloadableContentNcaList[j];
                         using UniqueRef<IFile> ncaFile = new();
 
                         partitionFileSystem.OpenFile(ref ncaFile.Ref, downloadableContentNca.FullPath.ToU8Span(), OpenMode.Read).ThrowIfFailure();

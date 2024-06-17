@@ -186,8 +186,9 @@ namespace Ryujinx.HLE.HOS.Services.SurfaceFlinger
                     return Status.StaleBufferSlot;
                 }
 
-                foreach (BufferItem item in Core.Queue)
+                for (int i = 0; i < Core.Queue.Count; i++)
                 {
+                    BufferItem item = Core.Queue[i];
                     if (item.Slot == slot)
                     {
                         return Status.BadValue;

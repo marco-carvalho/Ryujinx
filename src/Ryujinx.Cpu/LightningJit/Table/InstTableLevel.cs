@@ -14,8 +14,9 @@ namespace Ryujinx.Cpu.LightningJit.Table
         {
             uint commonEncodingMask = baseMask;
 
-            foreach (T info in insts)
+            for (int i = 0; i < insts.Count; i++)
             {
+                T info = insts[i];
                 commonEncodingMask &= info.EncodingMask;
             }
 
@@ -74,8 +75,9 @@ namespace Ryujinx.Cpu.LightningJit.Table
             }
             else
             {
-                foreach (T info in _insts)
+                for (int i = 0; i < _insts.Count; i++)
                 {
+                    T info = _insts[i];
                     if ((encoding & info.EncodingMask) == info.Encoding &&
                         !info.IsConstrained(encoding) &&
                         info.Version <= version &&

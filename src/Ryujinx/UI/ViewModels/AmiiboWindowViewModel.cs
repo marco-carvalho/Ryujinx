@@ -281,8 +281,9 @@ namespace Ryujinx.Ava.UI.ViewModels
                 {
                     if (!ShowAllAmiibo)
                     {
-                        foreach (AmiiboApiGamesSwitch game in _amiiboList[i].GamesSwitch)
+                        for (int j = 0; j < _amiiboList[i].GamesSwitch.Count; j++)
                         {
+                            AmiiboApiGamesSwitch game = _amiiboList[i].GamesSwitch[j];
                             if (game != null)
                             {
                                 if (game.GameId.Contains(TitleId))
@@ -338,8 +339,9 @@ namespace Ryujinx.Ava.UI.ViewModels
                 {
                     if (!_showAllAmiibo)
                     {
-                        foreach (AmiiboApiGamesSwitch game in amiiboSortedList[i].GamesSwitch)
+                        for (int j = 0; j < amiiboSortedList[i].GamesSwitch.Count; j++)
                         {
+                            AmiiboApiGamesSwitch game = amiiboSortedList[i].GamesSwitch[j];
                             if (game != null)
                             {
                                 if (game.GameId.Contains(TitleId))
@@ -384,12 +386,14 @@ namespace Ryujinx.Ava.UI.ViewModels
                 {
                     bool writable = false;
 
-                    foreach (AmiiboApiGamesSwitch item in _amiiboList[i].GamesSwitch)
+                    for (int j = 0; j < _amiiboList[i].GamesSwitch.Count; j++)
                     {
+                        AmiiboApiGamesSwitch item = _amiiboList[i].GamesSwitch[j];
                         if (item.GameId.Contains(TitleId))
                         {
-                            foreach (AmiiboApiUsage usageItem in item.AmiiboUsage)
+                            for (int k = 0; k < item.AmiiboUsage.Count; k++)
                             {
+                                AmiiboApiUsage usageItem = item.AmiiboUsage[k];
                                 usageStringBuilder.Append($"{Environment.NewLine}- {usageItem.Usage.Replace("/", Environment.NewLine + "-")}");
 
                                 writable = usageItem.Write;

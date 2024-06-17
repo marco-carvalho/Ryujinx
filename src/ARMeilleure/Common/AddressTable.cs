@@ -232,8 +232,9 @@ namespace ARMeilleure.Common
         {
             if (!_disposed)
             {
-                foreach (var page in _pages)
+                for (int i = 0; i < _pages.Count; i++)
                 {
+                    nint page = _pages[i];
                     Marshal.FreeHGlobal(page);
                 }
 

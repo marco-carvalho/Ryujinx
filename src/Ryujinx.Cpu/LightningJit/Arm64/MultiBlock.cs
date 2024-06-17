@@ -32,8 +32,9 @@ namespace Ryujinx.Cpu.LightningJit.Arm64
 
         public void PrintDebugInfo()
         {
-            foreach (Block block in Blocks)
+            for (int i = 0; i < Blocks.Count; i++)
             {
+                Block block = Blocks[i];
                 Console.WriteLine($"bb {block.Index}");
 
                 List<int> predList = new();

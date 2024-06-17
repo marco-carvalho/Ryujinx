@@ -38,8 +38,9 @@ namespace Ryujinx.HLE.HOS.Services.Time.Clock
         {
             Monitor.Enter(_operationEventList);
 
-            foreach (KWritableEvent e in _operationEventList)
+            for (int i = 0; i < _operationEventList.Count; i++)
             {
+                KWritableEvent e = _operationEventList[i];
                 e.Signal();
             }
 

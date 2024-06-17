@@ -173,8 +173,9 @@ namespace Ryujinx.UI.Windows
                 {
                     if (!_showAllCheckBox.Active)
                     {
-                        foreach (var game in _amiiboList[i].GamesSwitch)
+                        for (int j = 0; j < _amiiboList[i].GamesSwitch.Count; j++)
                         {
+                            AmiiboApiGamesSwitch game = _amiiboList[i].GamesSwitch[j];
                             if (game != null)
                             {
                                 if (game.GameId.Contains(TitleId))
@@ -316,18 +317,20 @@ namespace Ryujinx.UI.Windows
 
             for (int i = 0; i < amiiboSortedList.Count; i++)
             {
-                if (!comboxItemList.Contains(amiiboSortedList[i].Head + amiiboSortedList[i].Tail))
+                AmiiboApi amiiboApi = amiiboSortedList[i];
+                if (!comboxItemList.Contains(amiiboApi.Head + amiiboApi.Tail))
                 {
                     if (!_showAllCheckBox.Active)
                     {
-                        foreach (var game in amiiboSortedList[i].GamesSwitch)
+                        for (int j = 0; j < amiiboApi.GamesSwitch.Count; j++)
                         {
+                            AmiiboApiGamesSwitch game = amiiboApi.GamesSwitch[j];
                             if (game != null)
                             {
                                 if (game.GameId.Contains(TitleId))
                                 {
-                                    comboxItemList.Add(amiiboSortedList[i].Head + amiiboSortedList[i].Tail);
-                                    _amiiboCharsComboBox.Append(amiiboSortedList[i].Head + amiiboSortedList[i].Tail, amiiboSortedList[i].Name);
+                                    comboxItemList.Add(amiiboApi.Head + amiiboApi.Tail);
+                                    _amiiboCharsComboBox.Append(amiiboApi.Head + amiiboApi.Tail, amiiboApi.Name);
 
                                     break;
                                 }
@@ -366,12 +369,14 @@ namespace Ryujinx.UI.Windows
                 {
                     bool writable = false;
 
-                    foreach (var item in _amiiboList[i].GamesSwitch)
+                    for (int j = 0; j < _amiiboList[i].GamesSwitch.Count; j++)
                     {
+                        AmiiboApiGamesSwitch item = _amiiboList[i].GamesSwitch[j];
                         if (item.GameId.Contains(TitleId))
                         {
-                            foreach (AmiiboApiUsage usageItem in item.AmiiboUsage)
+                            for (int k = 0; k < item.AmiiboUsage.Count; k++)
                             {
+                                AmiiboApiUsage usageItem = item.AmiiboUsage[k];
                                 usageStringBuilder.Append(Environment.NewLine);
                                 usageStringBuilder.Append($"- {usageItem.Usage.Replace("/", Environment.NewLine + "-")}");
 

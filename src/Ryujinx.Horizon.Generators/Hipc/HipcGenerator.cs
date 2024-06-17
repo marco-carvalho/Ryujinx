@@ -61,8 +61,9 @@ namespace Ryujinx.Horizon.Generators.Hipc
         {
             HipcSyntaxReceiver syntaxReceiver = (HipcSyntaxReceiver)context.SyntaxReceiver;
 
-            foreach (var commandInterface in syntaxReceiver.CommandInterfaces)
+            for (int i = 0; i < syntaxReceiver.CommandInterfaces.Count; i++)
             {
+                CommandInterface commandInterface = syntaxReceiver.CommandInterfaces[i];
                 if (!NeedsIServiceObjectImplementation(context.Compilation, commandInterface.ClassDeclarationSyntax))
                 {
                     continue;
@@ -86,8 +87,9 @@ namespace Ryujinx.Horizon.Generators.Hipc
 
                 GenerateMethodTable(generator, context.Compilation, commandInterface);
 
-                foreach (var method in commandInterface.CommandImplementations)
+                for (int j = 0; j < commandInterface.CommandImplementations.Count; j++)
                 {
+                    MethodDeclarationSyntax method = commandInterface.CommandImplementations[j];
                     generator.AppendLine();
 
                     GenerateMethod(generator, context.Compilation, method);
@@ -127,8 +129,9 @@ namespace Ryujinx.Horizon.Generators.Hipc
             {
                 generator.EnterScope($"return FrozenDictionary.ToFrozenDictionary(new []");
 
-                foreach (var method in commandInterface.CommandImplementations)
+                for (int i = 0; i < commandInterface.CommandImplementations.Count; i++)
                 {
+                    MethodDeclarationSyntax method = commandInterface.CommandImplementations[i];
                     foreach (var commandId in GetAttributeArguments(compilation, method, TypeCommandAttribute, 0))
                     {
                         string[] args = new string[method.ParameterList.Parameters.Count];

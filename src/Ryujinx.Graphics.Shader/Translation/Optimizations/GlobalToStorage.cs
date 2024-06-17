@@ -93,8 +93,9 @@ namespace Ryujinx.Graphics.Shader.Translation.Optimizations
 
             public bool TryGetFunctionId(Operation baseOp, bool isMultiTarget, IReadOnlyList<uint> targetCbs, out int functionId)
             {
-                foreach (Entry entry in _entries)
+                for (int i = 0; i < _entries.Count; i++)
                 {
+                    Entry entry = _entries[i];
                     if (entry.Inst != baseOp.Inst ||
                         entry.StorageKind != baseOp.StorageKind ||
                         entry.IsMultiTarget != isMultiTarget ||
@@ -679,8 +680,9 @@ namespace Ryujinx.Graphics.Shader.Translation.Optimizations
             Operand globalAddressLow = Argument(0);
             Operand globalAddressHigh = Argument(1);
 
-            foreach (uint targetCb in targetCbs)
+            for (int i = 0; i < targetCbs.Count; i++)
             {
+                uint targetCb = targetCbs[i];
                 (int sbCbSlot, int sbCbOffset) = UnpackCbSlotAndOffset(targetCb);
 
                 Operand baseAddrLow = Cbuf(sbCbSlot, sbCbOffset);

@@ -1212,8 +1212,9 @@ namespace Ryujinx.UI.Common.Configuration
             {
                 Ryujinx.Common.Logging.Logger.Warning?.Print(LogClass.Application, $"Outdated configuration version {configurationFileFormat.Version}, migrating to version 30.");
 
-                foreach (InputConfig config in configurationFileFormat.InputConfig)
+                for (int i = 0; i < configurationFileFormat.InputConfig.Count; i++)
                 {
+                    InputConfig config = configurationFileFormat.InputConfig[i];
                     if (config is StandardControllerInputConfig controllerConfig)
                     {
                         controllerConfig.Rumble = new RumbleConfigController
@@ -1283,8 +1284,9 @@ namespace Ryujinx.UI.Common.Configuration
             {
                 Ryujinx.Common.Logging.Logger.Warning?.Print(LogClass.Application, $"Outdated configuration version {configurationFileFormat.Version}, migrating to version 35.");
 
-                foreach (InputConfig config in configurationFileFormat.InputConfig)
+                for (int i = 0; i < configurationFileFormat.InputConfig.Count; i++)
                 {
+                    InputConfig config = configurationFileFormat.InputConfig[i];
                     if (config is StandardControllerInputConfig controllerConfig)
                     {
                         controllerConfig.RangeLeft = 1.0f;

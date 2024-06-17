@@ -340,8 +340,9 @@ namespace Ryujinx.Graphics.Gpu.Memory
         {
             if (e.RemapActions != null)
             {
-                foreach (Action action in e.RemapActions)
+                for (int i = 0; i < e.RemapActions.Count; i++)
                 {
+                    Action action = e.RemapActions[i];
                     action();
                 }
             }

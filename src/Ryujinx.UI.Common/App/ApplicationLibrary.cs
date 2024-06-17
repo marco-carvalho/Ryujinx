@@ -97,8 +97,9 @@ namespace Ryujinx.UI.App.Common
 
             try
             {
-                foreach (string appDir in appDirs)
+                for (int i = 0; i < appDirs.Count; i++)
                 {
+                    string appDir = appDirs[i];
                     if (_cancellationToken.Token.IsCancellationRequested)
                     {
                         return;
@@ -156,8 +157,9 @@ namespace Ryujinx.UI.App.Common
                 }
 
                 // Loops through applications list, creating a struct and then firing an event containing the struct for each application
-                foreach (string applicationPath in applications)
+                for (int i = 0; i < applications.Count; i++)
                 {
+                    string applicationPath = applications[i];
                     if (_cancellationToken.Token.IsCancellationRequested)
                     {
                         return;

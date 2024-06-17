@@ -32,8 +32,9 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd.Impl
 
             updatedCount = 0;
 
-            foreach (PollEvent evnt in events)
+            for (int i = 0; i < events.Count; i++)
             {
+                PollEvent evnt = events[i];
                 ManagedSocket socket = (ManagedSocket)evnt.FileDescriptor;
 
                 bool isValidEvent = evnt.Data.InputEvents == 0;
@@ -79,8 +80,9 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd.Impl
                 return WinSockHelper.ConvertError((WsaError)exception.ErrorCode);
             }
 
-            foreach (PollEvent evnt in events)
+            for (int i = 0; i < events.Count; i++)
             {
+                PollEvent evnt = events[i];
                 Socket socket = ((ManagedSocket)evnt.FileDescriptor).Socket;
 
                 PollEventTypeMask outputEvents = evnt.Data.OutputEvents & ~evnt.Data.InputEvents;
@@ -124,8 +126,9 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd.Impl
 
             updatedCount = 0;
 
-            foreach (PollEvent pollEvent in events)
+            for (int i = 0; i < events.Count; i++)
             {
+                PollEvent pollEvent = events[i];
                 ManagedSocket socket = (ManagedSocket)pollEvent.FileDescriptor;
 
                 if (pollEvent.Data.InputEvents.HasFlag(PollEventTypeMask.Input))
@@ -148,8 +151,9 @@ namespace Ryujinx.HLE.HOS.Services.Sockets.Bsd.Impl
 
             updatedCount = readEvents.Count + writeEvents.Count + errorEvents.Count;
 
-            foreach (PollEvent pollEvent in events)
+            for (int i = 0; i < events.Count; i++)
             {
+                PollEvent pollEvent = events[i];
                 ManagedSocket socket = (ManagedSocket)pollEvent.FileDescriptor;
 
                 if (readEvents.Contains(socket.Socket))

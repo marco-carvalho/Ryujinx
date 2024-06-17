@@ -174,8 +174,9 @@ namespace Ryujinx.Graphics.Vulkan
 
                     if (!_gd.IsMoltenVk)
                     {
-                        foreach (var barrier in _imageBarriers)
+                        for (int i = 0; i < _imageBarriers.Count; i++)
                         {
+                            BarrierWithStageFlags<ImageMemoryBarrier> barrier = _imageBarriers[i];
                             _memoryBarriers.Add(new BarrierWithStageFlags<MemoryBarrier>(
                                 barrier.Flags,
                                 new MemoryBarrier()

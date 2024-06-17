@@ -75,8 +75,9 @@ namespace Ryujinx.UI.Windows
             _dlcTreeView.AppendColumn("TitleId", new CellRendererText(), "text", 1);
             _dlcTreeView.AppendColumn("Path", new CellRendererText(), "text", 2);
 
-            foreach (DownloadableContentContainer dlcContainer in _dlcContainerList)
+            for (int i = 0; i < _dlcContainerList.Count; i++)
             {
+                DownloadableContentContainer dlcContainer = _dlcContainerList[i];
                 if (File.Exists(dlcContainer.ContainerPath))
                 {
                     // The parent tree item has its own "enabled" check box, but it's the actual
@@ -93,8 +94,9 @@ namespace Ryujinx.UI.Windows
 
                     _virtualFileSystem.ImportTickets(pfs);
 
-                    foreach (DownloadableContentNca dlcNca in dlcContainer.DownloadableContentNcaList)
+                    for (int j = 0; j < dlcContainer.DownloadableContentNcaList.Count; j++)
                     {
+                        DownloadableContentNca dlcNca = dlcContainer.DownloadableContentNcaList[j];
                         using var ncaFile = new UniqueRef<IFile>();
 
                         pfs.OpenFile(ref ncaFile.Ref, dlcNca.FullPath.ToU8Span(), OpenMode.Read).ThrowIfFailure();
@@ -227,9 +229,10 @@ namespace Ryujinx.UI.Windows
                 while (_dlcTreeView.Model.IterNext(ref iter));
             }
 
-            foreach (TreeIter i in toRemove)
+            for (int i = 0; i < toRemove.Count; i++)
             {
-                TreeIter j = i;
+                TreeIter ti = toRemove[i];
+                TreeIter j = ti;
                 ((TreeStore)_dlcTreeView.Model).Remove(ref j);
             }
         }

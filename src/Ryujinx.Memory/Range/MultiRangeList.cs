@@ -186,8 +186,9 @@ namespace Ryujinx.Memory.Range
             var items = _items.AsList();
             var result = new List<T>();
 
-            foreach (RangeNode<ulong, T> item in items)
+            for (int i = 0; i < items.Count; i++)
             {
+                RangeNode<ulong, T> item = items[i];
                 if (item.Start == item.Value.BaseAddress)
                 {
                     result.Add(item.Value);

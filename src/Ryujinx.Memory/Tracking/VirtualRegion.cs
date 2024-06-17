@@ -72,8 +72,9 @@ namespace Ryujinx.Memory.Tracking
 
             if (!Guest)
             {
-                foreach (RegionHandle handle in Handles)
+                for (int i = 0; i < Handles.Count; i++)
                 {
+                    RegionHandle handle = Handles[i];
                     handle.SignalMappingChanged(mapped);
                 }
             }
@@ -90,8 +91,9 @@ namespace Ryujinx.Memory.Tracking
 
             MemoryPermission result = MemoryPermission.ReadAndWrite;
 
-            foreach (var handle in Handles)
+            for (int i = 0; i < Handles.Count; i++)
             {
+                RegionHandle handle = Handles[i];
                 result &= handle.RequiredPermission;
                 if (result == 0)
                 {
@@ -143,8 +145,9 @@ namespace Ryujinx.Memory.Tracking
 
             // The new region inherits all of our parents.
             newRegion.Handles = new List<RegionHandle>(Handles);
-            foreach (var parent in Handles)
+            for (int i = 0; i < Handles.Count; i++)
             {
+                RegionHandle parent = Handles[i];
                 parent.AddChild(newRegion);
             }
 

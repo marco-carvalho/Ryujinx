@@ -132,8 +132,9 @@ namespace Ryujinx.Graphics.Shader.Decoders
                         {
                             // We should have blocks for all possible branch targets,
                             // including those from PBK/PCNT/SSY instructions.
-                            foreach (PushOpInfo pushOp in currBlock.PushOpCodes)
+                            for (int i = 0; i < currBlock.PushOpCodes.Count; i++)
                             {
+                                PushOpInfo pushOp = currBlock.PushOpCodes[i];
                                 GetBlock(pushOp.Op.GetAbsoluteAddress());
                             }
 
@@ -651,8 +652,9 @@ namespace Ryujinx.Graphics.Shader.Decoders
                     }
                 }
 
-                foreach (Block predecessor in block.Predecessors)
+                for (int i = 0; i < block.Predecessors.Count; i++)
                 {
+                    Block predecessor = block.Predecessors[i];
                     if (visited.Add(predecessor))
                     {
                         toVisit.Enqueue(new BlockLocation(predecessor, predecessor.OpCodes.Count));

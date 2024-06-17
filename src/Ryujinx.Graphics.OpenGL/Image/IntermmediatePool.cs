@@ -92,8 +92,9 @@ namespace Ryujinx.Graphics.OpenGL.Image
 
         public void Dispose()
         {
-            foreach (TextureView entry in _entries)
+            for (int i = 0; i < _entries.Count; i++)
             {
+                TextureView entry = _entries[i];
                 entry.Dispose();
             }
 

@@ -1323,8 +1323,9 @@ namespace ARMeilleure.Decoders
                 temp[index] = new List<InstInfo>();
             }
 
-            foreach (InstInfo inst in allInsts)
+            for (int i = 0; i < allInsts.Count; i++)
             {
+                InstInfo inst = allInsts[i];
                 int mask = toFastLookupIndex(inst.Mask);
                 int value = toFastLookupIndex(inst.Value);
 

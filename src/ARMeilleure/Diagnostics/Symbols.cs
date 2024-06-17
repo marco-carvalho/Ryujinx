@@ -41,8 +41,9 @@ namespace ARMeilleure.Diagnostics
 
             lock (_rangedSymbols)
             {
-                foreach (RangedSymbol symbol in _rangedSymbols)
+                for (int i = 0; i < _rangedSymbols.Count; i++)
                 {
+                    RangedSymbol symbol = _rangedSymbols[i];
                     if (address >= symbol.Start && address <= symbol.End)
                     {
                         ulong diff = address - symbol.Start;

@@ -1047,8 +1047,9 @@ namespace Ryujinx.Graphics.Gpu.Memory
 
             if (toDelete != null)
             {
-                foreach (ulong entry in toDelete)
+                for (int i = 0; i < toDelete.Count; i++)
                 {
+                    ulong entry = toDelete[i];
                     dictionary.Remove(entry);
                 }
             }

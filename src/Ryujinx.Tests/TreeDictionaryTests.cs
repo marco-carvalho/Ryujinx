@@ -80,8 +80,9 @@ namespace Ryujinx.Tests.Collections
              *                6  8 
              */
 
-            foreach (KeyValuePair<int, int> node in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KeyValuePair<int, int> node = list[i];
                 Console.WriteLine($"{node.Key} -> {node.Value}");
             }
             Assert.AreEqual(list.Count, dictionary.Count);
@@ -114,8 +115,9 @@ namespace Ryujinx.Tests.Collections
              */
 
             list = dictionary.AsLevelOrderList();
-            foreach (KeyValuePair<int, int> node in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KeyValuePair<int, int> node = list[i];
                 Console.WriteLine($"{node.Key} -> {node.Value}");
             }
             Assert.AreEqual(list[0].Key, 4);
@@ -145,8 +147,9 @@ namespace Ryujinx.Tests.Collections
              *              5      8  11    24
              *                   
              */
-            foreach (KeyValuePair<int, int> node in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KeyValuePair<int, int> node = list[i];
                 Console.WriteLine($"{node.Key} -> {node.Value}");
             }
             Assert.AreEqual(list[0].Key, 4);
@@ -186,8 +189,9 @@ namespace Ryujinx.Tests.Collections
 
             List<KeyValuePair<int, int>> list = dictionary.AsLevelOrderList();
 
-            foreach (KeyValuePair<int, int> node in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KeyValuePair<int, int> node = list[i];
                 Console.WriteLine($"{node.Key} -> {node.Value}");
             }
 

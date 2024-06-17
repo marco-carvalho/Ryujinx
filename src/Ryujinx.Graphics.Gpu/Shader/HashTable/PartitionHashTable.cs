@@ -265,8 +265,9 @@ namespace Ryujinx.Graphics.Gpu.Shader.HashTable
 
                     if (bucket.MoreEntries != null)
                     {
-                        foreach (Entry entry in bucket.MoreEntries)
+                        for (int j = 0; j < bucket.MoreEntries.Count; j++)
                         {
+                            Entry entry = bucket.MoreEntries[j];
                             if (entry.IsPartial)
                             {
                                 continue;
@@ -306,8 +307,9 @@ namespace Ryujinx.Graphics.Gpu.Shader.HashTable
 
                 if (bucket.MoreEntries != null)
                 {
-                    foreach (Entry entry in bucket.MoreEntries)
+                    for (int i = 0; i < bucket.MoreEntries.Count; i++)
                     {
+                        Entry entry = bucket.MoreEntries[i];
                         if (entry.Hash == dataHash && entry.GetData().SequenceEqual(data))
                         {
                             item = entry.Item;
@@ -377,8 +379,9 @@ namespace Ryujinx.Graphics.Gpu.Shader.HashTable
 
                 if (bucket.MoreEntries != null)
                 {
-                    foreach (Entry entry in bucket.MoreEntries)
+                    for (int i = 0; i < bucket.MoreEntries.Count; i++)
                     {
+                        Entry entry = bucket.MoreEntries[i];
                         if (entry.Hash == dataHash && entry.GetData().SequenceEqual(dataSpan))
                         {
                             item = entry.Item;
@@ -412,8 +415,9 @@ namespace Ryujinx.Graphics.Gpu.Shader.HashTable
 
                     if (bucket.MoreEntries != null)
                     {
-                        foreach (Entry entry in bucket.MoreEntries)
+                        for (int j = 0; j < bucket.MoreEntries.Count; j++)
                         {
+                            Entry entry = bucket.MoreEntries[j];
                             Entry entryCopy = entry;
                             AddToBucket(ref newBuckets[(int)(entry.Hash & mask)], ref entryCopy);
                         }

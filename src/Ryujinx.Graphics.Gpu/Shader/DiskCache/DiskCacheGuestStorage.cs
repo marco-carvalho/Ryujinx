@@ -269,8 +269,9 @@ namespace Ryujinx.Graphics.Gpu.Shader.DiskCache
 
             if (_toc.TryGetValue(hash, out var list))
             {
-                foreach (var entry in list)
+                for (int i = 0; i < list.Count; i++)
                 {
+                    TocMemoryEntry entry = list[i];
                     if (data.Length != entry.CodeSize || cb1Data.Length != entry.Cb1DataSize)
                     {
                         continue;

@@ -61,8 +61,9 @@ namespace Ryujinx.HLE.HOS.Kernel.Ipc
 
         private static Result CopyToClient(KPageTableBase memoryManager, List<KBufferDescriptor> list)
         {
-            foreach (KBufferDescriptor desc in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KBufferDescriptor desc = list[i];
                 MemoryState stateMask;
 
                 switch (desc.State)
@@ -167,8 +168,9 @@ namespace Ryujinx.HLE.HOS.Kernel.Ipc
 
         private static Result UnmapServer(KPageTableBase memoryManager, List<KBufferDescriptor> list)
         {
-            foreach (KBufferDescriptor descriptor in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KBufferDescriptor descriptor = list[i];
                 Result result = memoryManager.UnmapNoAttributeIfStateEquals(
                     descriptor.ServerAddress,
                     descriptor.Size,
@@ -204,8 +206,9 @@ namespace Ryujinx.HLE.HOS.Kernel.Ipc
 
         private static Result RestoreClient(KPageTableBase memoryManager, List<KBufferDescriptor> list)
         {
-            foreach (KBufferDescriptor descriptor in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                KBufferDescriptor descriptor = list[i];
                 Result result = memoryManager.UnmapIpcRestorePermission(
                     descriptor.ClientAddress,
                     descriptor.Size,

@@ -77,8 +77,9 @@ namespace Ryujinx.Graphics.Vulkan
             {
                 ulong lastHandle = _firstHandle;
 
-                foreach (SyncHandle handle in _handles)
+                for (int i = 0; i < _handles.Count; i++)
                 {
+                    SyncHandle handle = _handles[i];
                     lock (handle)
                     {
                         if (handle.Waitable == null)
@@ -113,8 +114,9 @@ namespace Ryujinx.Graphics.Vulkan
                     return; // The handle has already been signalled or deleted.
                 }
 
-                foreach (SyncHandle handle in _handles)
+                for (int i = 0; i < _handles.Count; i++)
                 {
+                    SyncHandle handle = _handles[i];
                     if (handle.ID == id)
                     {
                         result = handle;

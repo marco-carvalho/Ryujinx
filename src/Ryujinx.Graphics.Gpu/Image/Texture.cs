@@ -536,8 +536,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
                 // All views must be recreated against the new storage.
 
-                foreach (var view in _views)
+                for (int i = 0; i < _views.Count; i++)
                 {
+                    Texture view = _views[i];
                     Logger.Debug?.Print(LogClass.Gpu, $"  Recreating view {Info.Width}x{Info.Height} {Info.FormatInfo.Format}.");
                     view.ScaleFactor = scale;
 
@@ -553,8 +554,9 @@ namespace Ryujinx.Graphics.Gpu.Image
             {
                 ScaleMode = newScaleMode;
 
-                foreach (var view in _views)
+                for (int i = 0; i < _views.Count; i++)
                 {
+                    Texture view = _views[i];
                     view.ScaleMode = newScaleMode;
                 }
             }
@@ -1650,8 +1652,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         {
             lock (_poolOwners)
             {
-                foreach (var owner in _poolOwners)
+                for (int i = 0; i < _poolOwners.Count; i++)
                 {
+                    TexturePoolOwner owner = _poolOwners[i];
                     owner.Pool.ForceRemove(this, owner.ID, deferred);
                 }
 
@@ -1680,8 +1683,9 @@ namespace Ryujinx.Graphics.Gpu.Image
             {
                 ulong address = 0;
 
-                foreach (var owner in _poolOwners)
+                for (int i = 0; i < _poolOwners.Count; i++)
                 {
+                    TexturePoolOwner owner = _poolOwners[i];
                     if (address == 0 || address == owner.GpuAddress)
                     {
                         address = owner.GpuAddress;

@@ -27,8 +27,9 @@ namespace Ryujinx.HLE.HOS.Services.Account.Acc
                 {
                     ProfilesJson profilesJson = JsonHelper.DeserializeFromFile(_profilesJsonPath, _serializerContext.ProfilesJson);
 
-                    foreach (var profile in profilesJson.Profiles)
+                    for (int i = 0; i < profilesJson.Profiles.Count; i++)
                     {
+                        UserProfileJson profile = profilesJson.Profiles[i];
                         UserProfile addedProfile = new(new UserId(profile.UserId), profile.Name, profile.Image, profile.LastModifiedTimestamp);
 
                         profiles.AddOrUpdate(profile.UserId, addedProfile, (key, old) => addedProfile);

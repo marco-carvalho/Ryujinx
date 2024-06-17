@@ -39,8 +39,9 @@ namespace Ryujinx.Common.Collections
             }
 
             int overlapsCount = 0;
-            foreach (RangeNode<TKey, TValue> value in node.Values)
+            for (int i = 0; i < node.Values.Count; i++)
             {
+                RangeNode<TKey, TValue> value = node.Values[i];
                 overlaps[overlapsCount++] = value.Value;
             }
 
@@ -188,8 +189,9 @@ namespace Ryujinx.Common.Collections
                 if (start.CompareTo(node.End) < 0)
                 {
                     // Contains this node. Add overlaps to list.
-                    foreach (RangeNode<TKey, TValue> overlap in node.Values)
+                    for (int i = 0; i < node.Values.Count; i++)
                     {
+                        RangeNode<TKey, TValue> overlap = node.Values[i];
                         if (start.CompareTo(overlap.End) < 0)
                         {
                             if (overlaps.Length <= overlapCount)

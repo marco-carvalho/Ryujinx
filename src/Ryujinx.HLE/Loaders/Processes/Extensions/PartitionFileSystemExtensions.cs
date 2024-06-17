@@ -149,10 +149,12 @@ namespace Ryujinx.HLE.Loaders.Processes.Extensions
                 {
                     List<DownloadableContentContainer> dlcContainerList = JsonHelper.DeserializeFromFile(addOnContentMetadataPath, _contentSerializerContext.ListDownloadableContentContainer);
 
-                    foreach (DownloadableContentContainer downloadableContentContainer in dlcContainerList)
+                    for (int i = 0; i < dlcContainerList.Count; i++)
                     {
-                        foreach (DownloadableContentNca downloadableContentNca in downloadableContentContainer.DownloadableContentNcaList)
+                        DownloadableContentContainer downloadableContentContainer = dlcContainerList[i];
+                        for (int j = 0; j < downloadableContentContainer.DownloadableContentNcaList.Count; j++)
                         {
+                            DownloadableContentNca downloadableContentNca = downloadableContentContainer.DownloadableContentNcaList[j];
                             if (File.Exists(downloadableContentContainer.ContainerPath) && downloadableContentNca.Enabled)
                             {
                                 device.Configuration.ContentManager.AddAocItem(downloadableContentNca.TitleId, downloadableContentContainer.ContainerPath, downloadableContentNca.FullPath);

@@ -60,8 +60,9 @@ namespace Ryujinx.Graphics.OpenGL
                     return null;
                 }
 
-                foreach (DisposedTexture texture in list)
+                for (int i = 0; i < list.Count; i++)
                 {
+                    DisposedTexture texture = list[i];
                     list.Remove(texture);
                     return texture.View;
                 }
@@ -102,8 +103,9 @@ namespace Ryujinx.Graphics.OpenGL
             {
                 foreach (List<DisposedTexture> list in _textures.Values)
                 {
-                    foreach (DisposedTexture texture in list)
+                    for (int i = 0; i < list.Count; i++)
                     {
+                        DisposedTexture texture = list[i];
                         texture.View.Dispose();
                     }
                 }

@@ -33,8 +33,9 @@ namespace Ryujinx.Graphics.Gpu.Shader
             ref GpuChannelGraphicsState graphicsState,
             out CachedShaderProgram program)
         {
-            foreach (var entry in _entries)
+            for (int i = 0; i < _entries.Count; i++)
             {
+                CachedShaderProgram entry = _entries[i];
                 bool vertexAsCompute = entry.VertexAsCompute != null;
                 bool usesDrawParameters = entry.Shaders[1]?.Info.UsesDrawParameters ?? false;
 
@@ -65,8 +66,9 @@ namespace Ryujinx.Graphics.Gpu.Shader
         /// <returns>True if a compatible program is found, false otherwise</returns>
         public bool TryFindForCompute(GpuChannel channel, GpuChannelPoolState poolState, GpuChannelComputeState computeState, out CachedShaderProgram program)
         {
-            foreach (var entry in _entries)
+            for (int i = 0; i < _entries.Count; i++)
             {
+                CachedShaderProgram entry = _entries[i];
                 if (entry.SpecializationState.MatchesCompute(channel, ref poolState, computeState, true))
                 {
                     program = entry;

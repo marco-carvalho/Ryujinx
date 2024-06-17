@@ -64,8 +64,9 @@ namespace Ryujinx.Ava.UI.Windows
 
             CheatNode currentGroup = null;
 
-            foreach (var cheat in mods.Cheats)
+            for (int i = 0; i < mods.Cheats.Count; i++)
             {
+                ModLoader.Cheat cheat = mods.Cheats[i];
                 if (cheat.Path.FullName != currentCheatFile)
                 {
                     currentCheatFile = cheat.Path.FullName;

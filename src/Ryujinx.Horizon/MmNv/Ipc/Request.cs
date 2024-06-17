@@ -120,8 +120,9 @@ namespace Ryujinx.Horizon.MmNv.Ipc
 
         private Session GetSessionById(uint id)
         {
-            foreach (Session session in _sessionList)
+            for (int i = 0; i < _sessionList.Count; i++)
             {
+                Session session = _sessionList[i];
                 if (session.Id == id)
                 {
                     return session;
@@ -133,8 +134,9 @@ namespace Ryujinx.Horizon.MmNv.Ipc
 
         private Session GetSessionByModule(Module module)
         {
-            foreach (Session session in _sessionList)
+            for (int i = 0; i < _sessionList.Count; i++)
             {
+                Session session = _sessionList[i];
                 if (session.Module == module)
                 {
                     return session;

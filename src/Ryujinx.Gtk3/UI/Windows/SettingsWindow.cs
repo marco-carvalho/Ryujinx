@@ -379,8 +379,9 @@ namespace Ryujinx.UI.Windows
             _gameDirsBoxStore = new ListStore(typeof(string));
             _gameDirsBox.Model = _gameDirsBoxStore;
 
-            foreach (string gameDir in ConfigurationState.Instance.UI.GameDirs.Value)
+            for (int i = 0; i < ConfigurationState.Instance.UI.GameDirs.Value.Count; i++)
             {
+                string gameDir = ConfigurationState.Instance.UI.GameDirs.Value[i];
                 _gameDirsBoxStore.AppendValues(gameDir);
             }
 

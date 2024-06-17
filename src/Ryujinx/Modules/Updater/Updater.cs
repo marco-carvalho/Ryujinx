@@ -102,8 +102,9 @@ namespace Ryujinx.Modules
                 var fetched = JsonHelper.Deserialize(fetchedJson, _serializerContext.GithubReleasesJsonResponse);
                 _buildVer = fetched.Name;
 
-                foreach (var asset in fetched.Assets)
+                for (int i = 0; i < fetched.Assets.Count; i++)
                 {
+                    GithubReleaseAssetJsonResponse asset = fetched.Assets[i];
                     if (asset.Name.StartsWith("ryujinx") && asset.Name.EndsWith(_platformExt))
                     {
                         _buildUrl = asset.BrowserDownloadUrl;
@@ -443,8 +444,9 @@ namespace Ryujinx.Modules
                     Logger.Warning?.Print(LogClass.Application, ex.Message);
                     Logger.Warning?.Print(LogClass.Application, "Multi-Threaded update failed, falling back to single-threaded updater.");
 
-                    foreach (WebClient webClient in webClients)
+                    for (int j = 0; j < webClients.Count; j++)
                     {
+                        WebClient webClient = webClients[j];
                         webClient.CancelAsync();
                     }
 
@@ -608,8 +610,9 @@ namespace Ryujinx.Modules
             {
                 // Replace old files
                 double count = 0;
-                foreach (string file in allFiles)
+                for (int i = 0; i < allFiles.Count; i++)
                 {
+                    string file = allFiles[i];
                     count++;
                     try
                     {

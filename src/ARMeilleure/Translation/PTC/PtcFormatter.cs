@@ -129,8 +129,9 @@ namespace ARMeilleure.Translation.PTC
         {
             SerializeStructure<int>(stream, list.Count);
 
-            foreach (T item in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                T item = list[i];
                 SerializeStructure<T>(stream, item);
             }
         }
@@ -173,8 +174,9 @@ namespace ARMeilleure.Translation.PTC
 
             size += Unsafe.SizeOf<int>();
 
-            foreach (T[] item in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                T[] item = list[i];
                 size += Unsafe.SizeOf<int>();
                 size += item.Length;
             }
@@ -187,8 +189,9 @@ namespace ARMeilleure.Translation.PTC
         {
             SerializeStructure<int>(stream, list.Count);
 
-            foreach (T[] item in list)
+            for (int i = 0; i < list.Count; i++)
             {
+                T[] item = list[i];
                 SerializeStructure<int>(stream, item.Length);
 
                 stream.Write(MemoryMarshal.AsBytes(item.AsSpan()));

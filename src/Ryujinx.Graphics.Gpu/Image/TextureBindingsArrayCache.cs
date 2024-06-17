@@ -1152,8 +1152,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
             if (keysToRemove != null)
             {
-                foreach (CacheEntryFromPoolKey key in keysToRemove)
+                for (int i = 0; i < keysToRemove.Count; i++)
                 {
+                    CacheEntryFromPoolKey key = keysToRemove[i];
                     _cacheFromPool.Remove(key);
                 }
             }

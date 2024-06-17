@@ -499,8 +499,9 @@ namespace Ryujinx.Graphics.Gpu.Memory
         {
             if (_bufferTextures.Count > 0)
             {
-                foreach (var binding in _bufferTextures)
+                for (int i = 0; i < _bufferTextures.Count; i++)
                 {
+                    BufferTextureBinding binding = _bufferTextures[i];
                     var isStore = binding.BindingInfo.Flags.HasFlag(TextureUsageFlags.ImageStore);
                     var range = bufferCache.GetBufferRange(binding.Range, BufferStageUtils.TextureBuffer(binding.Stage, binding.BindingInfo.Flags), isStore);
                     binding.Texture.SetStorage(range);
@@ -524,8 +525,9 @@ namespace Ryujinx.Graphics.Gpu.Memory
             {
                 ITexture[] textureArray = new ITexture[1];
 
-                foreach (var binding in _bufferTextureArrays)
+                for (int i = 0; i < _bufferTextureArrays.Count; i++)
                 {
+                    BufferTextureArrayBinding<ITextureArray> binding = _bufferTextureArrays[i];
                     var range = bufferCache.GetBufferRange(binding.Range, BufferStage.None);
                     binding.Texture.SetStorage(range);
 
@@ -533,8 +535,9 @@ namespace Ryujinx.Graphics.Gpu.Memory
                     binding.Array.SetTextures(binding.Index, textureArray);
                 }
 
-                foreach (var binding in _bufferImageArrays)
+                for (int i = 0; i < _bufferImageArrays.Count; i++)
                 {
+                    BufferTextureArrayBinding<IImageArray> binding = _bufferImageArrays[i];
                     var isStore = binding.BindingInfo.Flags.HasFlag(TextureUsageFlags.ImageStore);
                     var range = bufferCache.GetBufferRange(binding.Range, BufferStage.None, isStore);
                     binding.Texture.SetStorage(range);

@@ -575,8 +575,9 @@ namespace Ryujinx.UI.Widgets
 
             if (cacheFiles.Count > 0 && warningDialog.Run() == (int)ResponseType.Yes)
             {
-                foreach (FileInfo file in cacheFiles)
+                for (int i = 0; i < cacheFiles.Count; i++)
                 {
+                    FileInfo file = cacheFiles[i];
                     try
                     {
                         file.Delete();
@@ -609,8 +610,9 @@ namespace Ryujinx.UI.Widgets
 
             if ((oldCacheDirectories.Count > 0 || newCacheFiles.Count > 0) && warningDialog.Run() == (int)ResponseType.Yes)
             {
-                foreach (DirectoryInfo directory in oldCacheDirectories)
+                for (int i = 0; i < oldCacheDirectories.Count; i++)
                 {
+                    DirectoryInfo directory = oldCacheDirectories[i];
                     try
                     {
                         directory.Delete(true);
@@ -621,8 +623,9 @@ namespace Ryujinx.UI.Widgets
                     }
                 }
 
-                foreach (FileInfo file in newCacheFiles)
+                for (int i = 0; i < newCacheFiles.Count; i++)
                 {
+                    FileInfo file = newCacheFiles[i];
                     try
                     {
                         file.Delete();

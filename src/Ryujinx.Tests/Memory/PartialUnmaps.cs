@@ -448,8 +448,9 @@ namespace Ryujinx.Tests.Memory
                 threads.Add(writeThread);
             }
 
-            foreach (var thread in threads)
+            for (int i = 0; i < threads.Count; i++)
             {
+                Thread thread = threads[i];
                 thread.Start();
             }
 
@@ -457,8 +458,9 @@ namespace Ryujinx.Tests.Memory
 
             running = false;
 
-            foreach (var thread in threads)
+            for (int i = 0; i < threads.Count; i++)
             {
+                Thread thread = threads[i];
                 thread.Join();
             }
 

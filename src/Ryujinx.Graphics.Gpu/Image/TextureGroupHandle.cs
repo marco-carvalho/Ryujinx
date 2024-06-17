@@ -171,8 +171,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
             lock (Overlaps)
             {
-                foreach (Texture overlap in Overlaps)
+                for (int i = 0; i < Overlaps.Count; i++)
                 {
+                    Texture overlap = Overlaps[i];
                     overlap.SignalGroupDirty();
                 }
             }
@@ -316,8 +317,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
             // If this handle has any copy dependencies, notify the other handle that a copy needs to be performed.
 
-            foreach (TextureDependency dependency in Dependencies)
+            for (int i = 0; i < Dependencies.Count; i++)
             {
+                TextureDependency dependency = Dependencies[i];
                 dependency.SignalModified();
             }
 
@@ -349,8 +351,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         /// </summary>
         public void SynchronizeDependents()
         {
-            foreach (TextureDependency dependency in Dependencies)
+            for (int i = 0; i < Dependencies.Count; i++)
             {
+                TextureDependency dependency = Dependencies[i];
                 TextureGroupHandle otherHandle = dependency.Other.Handle;
 
                 if (otherHandle.DeferredCopy == this)
@@ -442,8 +445,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
             lock (Overlaps)
             {
-                foreach (Texture texture in Overlaps)
+                for (int i = 0; i < Overlaps.Count; i++)
                 {
+                    Texture texture = Overlaps[i];
                     texture.SignalModifiedDirty();
                 }
             }
@@ -478,8 +482,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
             _group.Storage.SignalGroupDirty();
 
-            foreach (Texture overlap in Overlaps)
+            for (int i = 0; i < Overlaps.Count; i++)
             {
+                Texture overlap = Overlaps[i];
                 overlap.SignalGroupDirty();
             }
         }
@@ -492,8 +497,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         public void CreateCopyDependency(TextureGroupHandle other, bool copyToOther = false)
         {
             // Does this dependency already exist?
-            foreach (TextureDependency existing in Dependencies)
+            for (int i = 0; i < Dependencies.Count; i++)
             {
+                TextureDependency existing = Dependencies[i];
                 if (existing.Other.Handle == other)
                 {
                     // Do not need to create it again. May need to set the dirty flag.
@@ -631,8 +637,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         /// <returns>True if there is a dependency, false otherwise</returns>
         public bool HasDependencyTo(TextureGroup group)
         {
-            foreach (TextureDependency dep in Dependencies)
+            for (int i = 0; i < Dependencies.Count; i++)
             {
+                TextureDependency dep = Dependencies[i];
                 if (dep.Other.Handle._group == group)
                 {
                     return true;

@@ -334,13 +334,15 @@ namespace Ryujinx.Graphics.Vulkan
                 entry.InConsumption = false;
             }
 
-            foreach (var dependant in entry.Dependants)
+            for (int i = 0; i < entry.Dependants.Count; i++)
             {
+                IAuto dependant = entry.Dependants[i];
                 dependant.DecrementReferenceCount(cbIndex);
             }
 
-            foreach (var waitable in entry.Waitables)
+            for (int i = 0; i < entry.Waitables.Count; i++)
             {
+                MultiFenceHolder waitable = entry.Waitables[i];
                 waitable.RemoveFence(cbIndex);
                 waitable.RemoveBufferUses(cbIndex);
             }

@@ -108,8 +108,9 @@ namespace Ryujinx.Ava.UI.ViewModels
 
         private void LoadUpdates()
         {
-            foreach (string path in TitleUpdateWindowData.Paths)
+            for (int i = 0; i < TitleUpdateWindowData.Paths.Count; i++)
             {
+                string path = TitleUpdateWindowData.Paths[i];
                 AddUpdate(path);
             }
 

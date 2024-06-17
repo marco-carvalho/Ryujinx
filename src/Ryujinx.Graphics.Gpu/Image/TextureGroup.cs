@@ -171,8 +171,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         /// </summary>
         public void InitializeOverlaps()
         {
-            foreach (TextureIncompatibleOverlap overlap in _incompatibleOverlaps)
+            for (int i = 0; i < _incompatibleOverlaps.Count; i++)
             {
+                TextureIncompatibleOverlap overlap = _incompatibleOverlaps[i];
                 if (overlap.Compatibility == TextureViewCompatibility.LayoutIncompatible)
                 {
                     CreateCopyDependency(overlap.Group, false);
@@ -230,8 +231,9 @@ namespace Ryujinx.Graphics.Gpu.Image
             {
                 bool flushed = false;
 
-                foreach (var overlap in _incompatibleOverlaps)
+                for (int i = 0; i < _incompatibleOverlaps.Count; i++)
                 {
+                    TextureIncompatibleOverlap overlap = _incompatibleOverlaps[i];
                     flushed |= overlap.Group.Storage.FlushModified(true);
                 }
 
@@ -478,8 +480,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         /// <returns>True if flushes should be tracked, false otherwise</returns>
         private bool ShouldFlushTriggerTracking()
         {
-            foreach (var overlap in _incompatibleOverlaps)
+            for (int i = 0; i < _incompatibleOverlaps.Count; i++)
             {
+                TextureIncompatibleOverlap overlap = _incompatibleOverlaps[i];
                 if (overlap.Group._flushIncompatibleOverlaps)
                 {
                     return true;
@@ -579,8 +582,9 @@ namespace Ryujinx.Graphics.Gpu.Image
                         {
                             group.Modified = false;
 
-                            foreach (Texture texture in group.Overlaps)
+                            for (int k = 0; k < group.Overlaps.Count; k++)
                             {
+                                Texture texture = group.Overlaps[k];
                                 texture.SignalModifiedDirty();
                             }
                         }
@@ -672,8 +676,9 @@ namespace Ryujinx.Graphics.Gpu.Image
         {
             if (_incompatibleOverlapsDirty)
             {
-                foreach (TextureIncompatibleOverlap incompatible in _incompatibleOverlaps)
+                for (int i = 0; i < _incompatibleOverlaps.Count; i++)
                 {
+                    TextureIncompatibleOverlap incompatible = _incompatibleOverlaps[i];
                     incompatible.Group.ClearModified(texture.Range, this);
 
                     incompatible.Group.SignalIncompatibleOverlapModified();
@@ -1082,8 +1087,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
             if (!(layerViews && mipViews))
             {
-                foreach (Texture view in views)
+                for (int i = 0; i < views.Count; i++)
                 {
+                    Texture view = views[i];
                     if (view.Info.GetSlices() < _layers)
                     {
                         layerViews = true;
@@ -1216,8 +1222,9 @@ namespace Ryujinx.Graphics.Gpu.Image
                 RecalculateHandleRegions();
             }
 
-            foreach (TextureIncompatibleOverlap incompatible in other._incompatibleOverlaps)
+            for (int i = 0; i < other._incompatibleOverlaps.Count; i++)
             {
+                TextureIncompatibleOverlap incompatible = other._incompatibleOverlaps[i];
                 RegisterIncompatibleOverlap(incompatible, false);
 
                 incompatible.Group._incompatibleOverlaps.RemoveAll(overlap => overlap.Group == other);
@@ -1598,8 +1605,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
                         lock (handle.Overlaps)
                         {
-                            foreach (Texture texture in handle.Overlaps)
+                            for (int i = 0; i < handle.Overlaps.Count; i++)
                             {
+                                Texture texture = handle.Overlaps[i];
                                 texture.SignalModifiedDirty();
                             }
                         }
@@ -1655,8 +1663,9 @@ namespace Ryujinx.Graphics.Gpu.Image
 
                 lock (handle.Overlaps)
                 {
-                    foreach (Texture texture in handle.Overlaps)
+                    for (int i = 0; i < handle.Overlaps.Count; i++)
                     {
+                        Texture texture = handle.Overlaps[i];
                         texture.SignalModifiedDirty();
                     }
                 }
@@ -1689,8 +1698,9 @@ namespace Ryujinx.Graphics.Gpu.Image
                 group.Dispose();
             }
 
-            foreach (TextureIncompatibleOverlap incompatible in _incompatibleOverlaps)
+            for (int i = 0; i < _incompatibleOverlaps.Count; i++)
             {
+                TextureIncompatibleOverlap incompatible = _incompatibleOverlaps[i];
                 incompatible.Group._incompatibleOverlaps.RemoveAll(overlap => overlap.Group == this);
             }
 
