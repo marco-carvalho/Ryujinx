@@ -132,7 +132,7 @@ namespace Ryujinx.Common.Logging
                 _enabledClasses[index] = true;
             }
 
-            _logTargets = new List<ILogTarget>();
+            _logTargets = [];
 
             _time = Stopwatch.StartNew();
 
